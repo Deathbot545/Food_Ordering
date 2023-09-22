@@ -1,8 +1,29 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="p-5 mb-4 bg-body-tertiary rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Custom jumbotron</h1>
+        <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+        <button class="btn btn-primary btn-lg" type="button">Example button</button>
+    </div>
+</div>
+
+<div class="row align-items-md-stretch">
+    <div class="col-md-6">
+       
+            <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+            <h2>Customer</h2>
+            <p>Order food quickly and easily.</p>
+            <a href="@Url.Action("Register", "Customer")" class="btn btn-primary">Register as Customer</a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="h-100 p-5 text-bg-dark rounded-3">
+            <h2>Add You're Own Shop</h2>
+            <p>Manage your restaurant's orders.</p>
+            <a href="@Url.Action("Register", "Shop")" class="btn btn-primary">Register as Shop</a>
+        </div>
+    </div>
 </div>

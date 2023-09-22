@@ -1,0 +1,15 @@
+D:\New folder\Food_Ordering\Food_Ordering\Core\bin\Debug\net7.0\Core.deps.json
+D:\New folder\Food_Ordering\Food_Ordering\Core\bin\Debug\net7.0\Core.dll
+D:\New folder\Food_Ordering\Food_Ordering\Core\bin\Debug\net7.0\Core.pdb
+D:\New folder\Food_Ordering\Food_Ordering\Core\obj\Debug\net7.0\Core.csproj.AssemblyReference.cache
+D:\New folder\Food_Ordering\Food_Ordering\Core\obj\Debug\net7.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\New folder\Food_Ordering\Food_Ordering\Core\obj\Debug\net7.0\Core.AssemblyInfoInputs.cache
+D:\New folder\Food_Ordering\Food_Ordering\Core\obj\Debug\net7.0\Core.AssemblyInfo.cs
+D:\New folder\Food_Ordering\Food_Ordering\Core\obj\Debug\net7.0\Core.csproj.CoreCompileInputs.cache
+D:\New folder\Food_Ordering\Food_Ordering\Core\obj\Debug\net7.0\Core.dll
+D:\New folder\Food_Ordering\Food_Ordering\Core\obj\Debug\net7.0\refint\Core.dll
+D:\New folder\Food_Ordering\Food_Ordering\Core\obj\Debug\net7.0\Core.pdb
+D:\New folder\Food_Ordering\Food_Ordering\Core\obj\Debug\net7.0\ref\Core.dll
+D:\New folder\Food_Ordering\Food_Ordering\Core\bin\Debug\net7.0\Infrastructure.dll
+D:\New folder\Food_Ordering\Food_Ordering\Core\bin\Debug\net7.0\Infrastructure.pdb
+D:\New folder\Food_Ordering\Food_Ordering\Core\obj\Debug\net7.0\Core.csproj.CopyComplete
