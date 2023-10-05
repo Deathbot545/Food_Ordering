@@ -1,7 +1,14 @@
 ﻿@using Infrastructure.Models;
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@{
+    System.Diagnostics.Debug.WriteLine($"Is In Role Customer: {User.IsInRole("Customer")}");
+    System.Diagnostics.Debug.WriteLine($"Is In Role Admin: {User.IsInRole("Admin")}");
+    System.Diagnostics.Debug.WriteLine($"Is In Role Restaurant: {User.IsInRole("Restaurant")}");
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,10 +37,10 @@
             <!-- Replacing the brand name with buttons -->
             <!-- ... (above part remains unchanged) -->
             <div class="ms-auto d-flex align-items-center">
-                @if (User.Identity.IsAuthenticated)
+                @if (SignInManager.IsSignedIn(User))
                 {
                     <div class="me-2">
-                        <a class="btn btn-outline-primary" href="@Url.Action("UserProfile", "User")">
+                        <a class="btn btn-outline-primary" href="@Url.Action("Profile", "Home")">
                             Profile
                         </a>
                     </div>
@@ -85,13 +92,13 @@
                         {
                             <!-- Restaurant-specific links -->
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="@Url.Action("Outlets", "Restaurant")">Outlets</a>
+                                <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Restaurant")">Outlets</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="@Url.Action("ManageOrders", "Restaurant")">Manage Orders</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("RestaurantProfile", "Restaurant")">Restaurant Profile</a>
+                                <a class="nav-link" href="@Url.Action("Profile", "Home")">Restaurant Profile</a>
                             </li>
                         }
                         else if (User.IsInRole("Admin"))

@@ -2,11 +2,14 @@
 
 namespace Food_Ordering_API.Controllers
 {
-    public class HomeController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class HomeController : ControllerBase
     {
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return Ok(new { message = "API Home endpoint." });
         }
     }
 }

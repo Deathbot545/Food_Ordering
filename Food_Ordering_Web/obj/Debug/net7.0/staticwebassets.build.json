@@ -1,11 +1,23 @@
 {
   "Version": 1,
-  "Hash": "yc9lfHmBSR31rNVwiyKKz0RMlMZOs+YkcdUIAt/CqSE=",
+  "Hash": "pvAfLNWemE3AcWl/wbH0M+eTXuar86glOhIwnE9TEr8=",
   "Source": "Food_Ordering_Web",
   "BasePath": "_content/Food_Ordering_Web",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "D:\\New folder\\Food_Ordering\\Food_Ordering\\Food_Ordering\\Food_Ordering_API.csproj",
+      "Version": 2,
+      "Source": "Food_Ordering_API",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
   "DiscoveryPatterns": [
     {
       "Name": "Food_Ordering_Web\\wwwroot",

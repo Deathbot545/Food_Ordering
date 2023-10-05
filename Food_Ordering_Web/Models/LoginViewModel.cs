@@ -7,5 +7,4 @@
         public bool RememberMe { get; set; }
     }
 
-
 }

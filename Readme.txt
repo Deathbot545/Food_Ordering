@@ -12,17 +12,18 @@
       - ...
   - WebAPI (ASP.NET Core Web API)
       - Controllers
+          -AccountApiController
       - ...
   - Core
       - Entities
       - Interfaces
       - DTOs
-      - Core
+      - Utilities
+          -JsonContent
+      - ViewModels
+          -LoginModel.cs
       - Services
-          - EmailService
-          - PaymentService
-          - CartService
-          - OrderService
+          - AccountService.cs
   - Infrastructure
       - Data
           - AppDbContext.cs

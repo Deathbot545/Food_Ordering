@@ -21,16 +21,18 @@ namespace Core.Services.AccountService
 
         }
 
-        public async Task AddAdminAsync(string email, string password)
+        public async Task AddAdminAsync(string username, string password)
         {
-            var user = new ApplicationUser { UserName = email, Email = email };
+            if (!await _roleManager.RoleExistsAsync("Admin"))
+            {
+                await _roleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+            var user = new ApplicationUser { UserName = username, Email = username };
             var result = await _userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
-                if (!await _roleManager.RoleExistsAsync("Admin"))
-                {
-                    await _roleManager.CreateAsync(new IdentityRole("Admin"));
-                }
+
+               
                 await _userManager.AddToRoleAsync(user, "Admin");
 
             }
@@ -40,16 +42,18 @@ namespace Core.Services.AccountService
             }
         }
 
-        public async Task AddCustomerAsync(string email, string password)
+        public async Task AddCustomerAsync(string username, string password)
         {
-            var user = new ApplicationUser { UserName = email, Email = email };
+            if (!await _roleManager.RoleExistsAsync("Customer"))
+            {
+                await _roleManager.CreateAsync(new IdentityRole("Customer"));
+            }
+            var user = new ApplicationUser { UserName = username, Email = username };
             var result = await _userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
-                if (!await _roleManager.RoleExistsAsync("Customer"))
-                {
-                    await _roleManager.CreateAsync(new IdentityRole("Customer"));
-                }
+              
+
                 await _userManager.AddToRoleAsync(user, "Customer");
             }
             else
@@ -58,16 +62,17 @@ namespace Core.Services.AccountService
             }
         }
 
-        public async Task AddRestaurantAsync(string email, string password)
+        public async Task AddRestaurantAsync(string username, string password)
         {
-            var user = new ApplicationUser { UserName = email, Email = email };
+            if (!await _roleManager.RoleExistsAsync("Restaurant"))
+            {
+                await _roleManager.CreateAsync(new IdentityRole("Restaurant"));
+            }
+            var user = new ApplicationUser { UserName = username, Email = username };
             var result = await _userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
-                if (!await _roleManager.RoleExistsAsync("Restaurant"))
-                {
-                    await _roleManager.CreateAsync(new IdentityRole("Restaurant"));
-                }
+               
                 await _userManager.AddToRoleAsync(user, "Restaurant");
             }
             else
@@ -76,13 +81,14 @@ namespace Core.Services.AccountService
             }
         }
 
-        public async Task<ApplicationUser> LoginAsync(string email, string password)
+        public async Task<ApplicationUser> LoginAsync(string identifier, string password)
         {
-            var user = await _userManager.FindByEmailAsync(email);
+            var user = await _userManager.FindByEmailAsync(identifier) ?? await _userManager.FindByNameAsync(identifier);
             if (user == null)
             {
                 throw new UserNotFoundException();
             }
+
             var isPasswordValid = await _userManager.CheckPasswordAsync(user, password);
             if (!isPasswordValid)
             {
@@ -90,8 +96,6 @@ namespace Core.Services.AccountService
             }
             return user;
         }
-
-       
 
 
         // Custom exceptions to better convey specific error scenarios

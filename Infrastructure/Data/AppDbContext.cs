@@ -17,7 +17,7 @@ namespace Infrastructure.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-        public DbSet<Outlet> Outlets { get; set; }
+       
         // Your DbSets and configurations go here
     }
 }

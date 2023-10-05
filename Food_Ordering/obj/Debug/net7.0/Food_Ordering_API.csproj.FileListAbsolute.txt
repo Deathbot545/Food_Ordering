@@ -63,3 +63,10 @@ D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\Npgsql.
 D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\Infrastructure.dll
 D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\Infrastructure.pdb
 D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Google.dll
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\Core.dll
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\Core.pdb
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\Humanizer.dll
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\Mono.TextTemplating.dll
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\System.CodeDom.dll

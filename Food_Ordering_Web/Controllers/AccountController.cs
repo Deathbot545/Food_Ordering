@@ -1,204 +1,214 @@
-﻿using Core.Services.AccountService;
-using Food_Ordering_Web.Models;
-using Infrastructure.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Food_Ordering_Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
+using System.Text.Json;
+using System.Text;
+using System.Threading.Tasks;
+using Core.Utilities;
+using Core.DTO;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text.Json.Serialization;
 using System.Security.Claims;
-using static Core.Services.AccountService.AccountService;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
+using Infrastructure.Models;
 
 namespace Food_Ordering_API.Controllers
 {
+    
     public class AccountController : Controller
     {
-        private readonly AccountService _accountService;
-        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly HttpClient _httpClient;
+        private readonly string _apiBaseUrl;
 
-        public AccountController(AccountService accountService, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IConfiguration configuration)
         {
-            _accountService = accountService;
-            _signInManager = signInManager;
             _userManager = userManager;
-            _roleManager = roleManager;
+            _signInManager = signInManager;
+            _httpClient = new HttpClient(); // Or however you get your HttpClient
+            _apiBaseUrl = configuration.GetValue<string>("ApiBaseUrl");  // Initialize it here
         }
+
         [HttpGet]
         public IActionResult Register()
         {
             return View("~/Views/Account/Signup.cshtml");
         }
-        [HttpGet]
+        [HttpPost]
+        public async Task<IActionResult> AddAdmin(string username, string password)
+        {
+            return await AddUser("RegisterAdmin", username, password, "Index", "Admin");
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddCustomer(string username, string password)
+        {
+            return await AddUser("RegisterCustomer", username, password, "Index", "Customer");
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddRestaurant(string username, string password)
+        {
+            return await AddUser("RegisterRestaurant", username, password, "Index", "Restaurant");
+        }
+        [HttpPost]
+        private async Task<IActionResult> AddUser(string apiEndpoint, string username, string password, string actionName, string controllerName)
+        {
+            var user = new { Username = username, Password = password };
+
+
+            var response = await _httpClient.PostAsync($"{_apiBaseUrl}/{apiEndpoint}",
+                new StringContent(JsonSerializer.Serialize(user), Encoding.UTF8, "application/json"));
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction(actionName, controllerName);
+            }
+            else
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                ModelState.AddModelError(string.Empty, $"Server error: {error}");
+                return Content("An error occurred.");  // Changed this line to return a simple content result.
+            }
+        }
+
         public IActionResult Login()
         {
-            return View("~/Views/Account/Login.cshtml");
-        }
-        public async Task<IActionResult> AddAdmin(string email, string password)
-        {
-            try
-            {
-                await _accountService.AddAdminAsync(email, password);
-                return RedirectToAction("Index", "Admin");
-            }
-            catch (IdentityException ex)
-            {
-                return BadRequest(ex.Errors);
-            }
-        }
-
-        public async Task<IActionResult> AddCustomer(string email, string password)
-        {
-            try
-            {
-                await _accountService.AddCustomerAsync(email, password);
-                return RedirectToAction("Index", "Customer");
-            }
-            catch (IdentityException ex)
-            {
-                return BadRequest(ex.Errors);
-            }
-        }
-
-        public async Task<IActionResult> AddRestaurant(string email, string password)
-        {
-            try
-            {
-                await _accountService.AddRestaurantAsync(email, password);
-                return RedirectToAction("Index", "Restaurant");
-            }
-            catch (IdentityException ex)
-            {
-                return BadRequest(ex.Errors);
-            }
-        }
-
-        public async Task<IActionResult> Login(LoginViewModel model)
-        {
-            try
-            {
-                var user = await _accountService.LoginAsync(model.UserName, model.Password); // or model.email if you kept it
-                await _signInManager.SignInAsync(user, isPersistent: false);
-
-                var roles = await _userManager.GetRolesAsync(user);
-                string userRole = roles.FirstOrDefault();
-
-                switch (userRole)
-                {
-                    case "Admin":
-                        return RedirectToAction("Index", "Admin");
-                    case "Customer":
-                        return RedirectToAction("Index", "Customer");
-                    case "Restaurant":
-                        return RedirectToAction("Index", "Restaurant");
-                    default:
-                        return RedirectToAction("Index", "Home");
-                }
-            }
-            catch (UserNotFoundException)
-            {
-                return BadRequest("User not found");
-            }
-            catch (InvalidLoginException)
-            {
-                return BadRequest("Invalid login credentials");
-            }
+            return View();
         }
 
         [HttpPost]
-        [AllowAnonymous]
-        public IActionResult ExternalLogin(string provider, string role)
+        public async Task<IActionResult> Login(LoginViewModel model, string actionName, string controllerName)
         {
-            var redirectUrl = Url.Action("ExternalLoginCallback", "Account");
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
-            properties.Items["role"] = role;
-            return new ChallengeResult(provider, properties);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
-        {
-            if (remoteError != null)
+            var loginDto = new LoginDto
             {
-                return View("Error", new ErrorViewModel { Message = $"Error from external provider: {remoteError}" });
-            }
+                UsernameOrEmail = model.UserName,
+                Password = model.Password
+            };
 
-            var info = await _signInManager.GetExternalLoginInfoAsync();
-            if (info == null)
+            var jsonPayload = JsonSerializer.Serialize(loginDto);
+            var httpResponse = await _httpClient.PostAsync(
+                $"{_apiBaseUrl}/Login",
+                new StringContent(jsonPayload, Encoding.UTF8, "application/json"));
+
+            if (httpResponse.IsSuccessStatusCode)
             {
-                return RedirectToAction(nameof(Login));
-            }
+                var responseContent = await httpResponse.Content.ReadAsStringAsync();
+                var responseObject = JsonSerializer.Deserialize<LoginResponse>(responseContent);
 
-            var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-            var user = await _userManager.FindByEmailAsync(email);
-
-            if (user != null)
-            {
-                var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
-                if (result.Succeeded)
+                if (responseObject != null)
                 {
-                    var roles = await _userManager.GetRolesAsync(user);
-                    string userRole = roles.FirstOrDefault();
-                    return RedirectToRoleBasedView(userRole, returnUrl);
-                }
-            }
-
-            var role = info.AuthenticationProperties.Items["role"];
-
-            // Check if the role is null or empty
-            // Check if the role is null or empty
-            if (string.IsNullOrEmpty(role))
-            {
-                ViewBag.ErrorMessage = "User is not registered.";
-                return View("Login");
-            }
-
-
-            user = new ApplicationUser { UserName = email, Email = email };
-            var identityResult = await _userManager.CreateAsync(user);
-            if (identityResult.Succeeded)
-            {
-                identityResult = await _userManager.AddLoginAsync(user, info);
-                if (identityResult.Succeeded)
-                {
-                    if (!await _roleManager.RoleExistsAsync(role))
+                    // Store JWT in HttpOnly cookie
+                    HttpContext.Response.Cookies.Append("jwtCookie", responseObject.Token, new CookieOptions
                     {
-                        await _roleManager.CreateAsync(new IdentityRole(role));
+                        HttpOnly = true,
+                        Secure = true,
+                        SameSite = SameSiteMode.Strict
+                    });
+
+                    // Decode JWT to get role
+                    var handler = new JwtSecurityTokenHandler();
+                    var tokenS = handler.ReadToken(responseObject.Token) as JwtSecurityToken;
+
+                    // Check for role claim safely
+                    var roleClaim = tokenS.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role);
+
+                    if (roleClaim != null)
+                    {
+                        var role = roleClaim.Value;
+
+                        // Retrieve the ApplicationUser object for the current user.
+                        var user = await _userManager.FindByNameAsync(model.UserName);
+
+                        if (user != null)
+                        {
+                            // Create claims
+                            var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, model.UserName),
+                        new Claim(ClaimTypes.Role, role),
+                        new Claim("UserId", responseObject.UserId)
+                    };
+
+                            // Create ClaimsIdentity
+                            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                            // Use SignInManager to sign in the user
+                            await _signInManager.SignInWithClaimsAsync(user, isPersistent: false, claimsIdentity.Claims);
+
+                            // Redirect based on role
+                            if (role == "Admin")
+                            {
+                                return RedirectToAction("Index", "Admin");
+                            }
+                            else if (role == "Customer")
+                            {
+                                return RedirectToAction("Index", "Customer");
+                            }
+                            else if (role == "Restaurant")
+                            {
+                                return RedirectToAction("Index", "Restaurant");
+                            }
+                            // ... Handle other roles as necessary ...
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "User not found.");
+                        }
                     }
-
-                    await _userManager.AddToRoleAsync(user, role);
-
-                    var roles = await _userManager.GetRolesAsync(user);
-                    string userRole = roles.FirstOrDefault();
-
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToRoleBasedView(userRole, returnUrl);
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Role claim not found in JWT.");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Could not deserialize response.");
                 }
             }
-
-            return View("Error", new ErrorViewModel { Message = "An error occurred while processing your authentication." });
-        }
-        // New helper method for role-based redirection
-        private IActionResult RedirectToRoleBasedView(string userRole, string defaultUrl)
-        {
-            switch (userRole)
+            else
             {
-                case "Admin":
-                    return RedirectToAction("Index", "Admin");
-                case "Customer":
-                    return RedirectToAction("Index", "Customer");
-                case "Restaurant":
-                    return RedirectToAction("Index", "Restaurant");
-                default:
-                    return LocalRedirect(defaultUrl ?? "/");  // If defaultUrl is null, redirect to home page
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             }
+
+            return View(model);
         }
 
-        [HttpGet]
+
+        public class LoginResponse
+        {
+            [JsonPropertyName("message")]
+            public string Message { get; set; }
+
+            [JsonPropertyName("userId")]
+            public string UserId { get; set; }
+
+            [JsonPropertyName("token")]
+            public string Token { get; set; }
+        }
+
+
+
+
+
+        [HttpPost]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            var httpResponse = await _httpClient.PostAsync($"{_apiBaseUrl}/Logout", null);
+
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                // Remove the JWT token from client-side or server-side storage
+                return RedirectToAction("SomeAction", "SomeController"); // Redirect to another page
+            }
+
+            ModelState.AddModelError(string.Empty, "Failed to logout.");
+            return View(); // Return to the same or different view as needed
         }
+
+
+
 
     }
 }
