@@ -21,65 +21,34 @@ namespace Core.Services.AccountService
 
         }
 
-        public async Task AddAdminAsync(string username, string password)
+        public async Task<bool> AddUserAsync(string username, string password, string role)
         {
-            if (!await _roleManager.RoleExistsAsync("Admin"))
+            if (!await _roleManager.RoleExistsAsync(role))
             {
-                await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                await _roleManager.CreateAsync(new IdentityRole(role));
             }
+
             var user = new ApplicationUser { UserName = username, Email = username };
-            var result = await _userManager.CreateAsync(user, password);
-            if (result.Succeeded)
+
+            IdentityResult result;
+
+            if (string.IsNullOrEmpty(password))
             {
-
-               
-                await _userManager.AddToRoleAsync(user, "Admin");
-
+                result = await _userManager.CreateAsync(user);
             }
             else
             {
-                throw new IdentityException(result.Errors);
+                result = await _userManager.CreateAsync(user, password);
             }
-        }
 
-        public async Task AddCustomerAsync(string username, string password)
-        {
-            if (!await _roleManager.RoleExistsAsync("Customer"))
-            {
-                await _roleManager.CreateAsync(new IdentityRole("Customer"));
-            }
-            var user = new ApplicationUser { UserName = username, Email = username };
-            var result = await _userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
-              
-
-                await _userManager.AddToRoleAsync(user, "Customer");
+                await _userManager.AddToRoleAsync(user, role);
+                return true;
             }
-            else
-            {
-                throw new IdentityException(result.Errors);
-            }
+            return false;
         }
 
-        public async Task AddRestaurantAsync(string username, string password)
-        {
-            if (!await _roleManager.RoleExistsAsync("Restaurant"))
-            {
-                await _roleManager.CreateAsync(new IdentityRole("Restaurant"));
-            }
-            var user = new ApplicationUser { UserName = username, Email = username };
-            var result = await _userManager.CreateAsync(user, password);
-            if (result.Succeeded)
-            {
-               
-                await _userManager.AddToRoleAsync(user, "Restaurant");
-            }
-            else
-            {
-                throw new IdentityException(result.Errors);
-            }
-        }
 
         public async Task<ApplicationUser> LoginAsync(string identifier, string password)
         {
@@ -97,6 +66,10 @@ namespace Core.Services.AccountService
             return user;
         }
 
+        public async Task<ApplicationUser> FindUserAsync(string identifier)
+        {
+            return await _userManager.FindByEmailAsync(identifier) ?? await _userManager.FindByNameAsync(identifier);
+        }
 
         // Custom exceptions to better convey specific error scenarios
         public class IdentityException : Exception

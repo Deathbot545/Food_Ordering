@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "s6ezvB597472sxMF64XJiav4UOfH5RiRh7bYH0gLGJi83wAu6qNw47bgK1KAKKj7Q99fQ7iCQDDbLQ4F3y8Uxg==",
+  "dgSpecHash": "VgyohsiQZJocA8ZYJDquVP3JzoXpsWtRdYHMwXA2XHdIMIbDA3jtga2shd9SJZ0Zj/69bGGKRsJd8lpWjzDIVQ==",
   "success": true,
   "projectFilePath": "D:\\New folder\\Food_Ordering\\Food_Ordering\\Food_Ordering_Web\\Food_Ordering_Web.csproj",
   "expectedPackageFiles": [
@@ -59,6 +59,7 @@
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.11\\npgsql.entityframeworkcore.postgresql.7.0.11.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",

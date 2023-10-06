@@ -1,4 +1,8 @@
-﻿<style>
+﻿@{
+    ViewData["Title"] = "Signin";
+}
+
+<style>
     body {
         background-color: #f5f5f5;
         transition: background-color 0.5s ease;
@@ -66,6 +70,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+
             <div class="card">
                 <div class="card-header text-center">
                     <h4>Sign Up</h4>
@@ -76,7 +87,7 @@
                 </div>
                 <div class="card-body">
                     <div id="customerForm">
-                        <form id="signupForm" method="post" action="/Account/AddCustomer">
+                        <form id="signupFormCustomer" method="post" action="/Account/AddUser">
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
@@ -91,15 +102,14 @@
                                 <label for="confirmPassword" class="form-label">Confirm Password</label>
                                 <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password">
                             </div>
+                            <input type="hidden" name="roleName" value="Customer" />
                             <div class="center-button">
                                 <button type="submit" class="btn btn-primary">Sign Up</button>
                             </div>
-
-
                         </form>
                         <div class="form-group text-center mt-4">
                             <p class="mb-2">Or join using:</p>
-                            <form asp-controller="Account" asp-action="ExternalLogin" method="post">
+                            <form asp-controller="Account" asp-action="ExternalRegisterOrLogin" method="get">
                                 <input type="hidden" name="provider" value="Google" />
                                 <input type="hidden" name="role" value="Customer" />
                                 <button type="submit" class="btn btn-outline-danger">
@@ -109,7 +119,7 @@
                         </div>
                     </div>
                     <div id="ownerForm" class="hidden">
-                        <form id="signupForm" method="post" action="/Account/AddRestaurant">
+                        <form id="signupFormRestaurant" method="post" action="/Account/AddUser">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
@@ -123,6 +133,7 @@
                                 <label for="confirmPassword" class="form-label">Confirm Password</label>
                                 <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password">
                             </div>
+                            <input type="hidden" name="roleName" value="Restaurant" />
                             <div class="center-button">
                                 <button type="submit" class="btn btn-primary">Sign Up</button>
                             </div>
@@ -130,7 +141,7 @@
                         </form>
                         <div class="form-group text-center mt-4">
                             <p class="mb-2">Or join using:</p>
-                            <form asp-controller="Account" asp-action="ExternalLogin" method="post">
+                            <form asp-controller="Account" asp-action="ExternalRegisterOrLogin" method="get">
                                 <input type="hidden" name="provider" value="Google" />
                                 <input type="hidden" name="role" value="Restaurant" />
                                 <button type="submit" class="btn btn-outline-danger">

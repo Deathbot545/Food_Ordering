@@ -45,9 +45,10 @@
                         </a>
                     </div>
                     <div class="me-2">
-                        <a class="btn btn-outline-danger" href="@Url.Action("Logout", "Account")">
-                            Logout
-                        </a>
+                        <form asp-controller="Account" asp-action="Logout" method="post">
+                            <button type="submit" class="btn btn-outline-danger">Logout</button>
+                        </form>
+
                     </div>
                 }
                 else

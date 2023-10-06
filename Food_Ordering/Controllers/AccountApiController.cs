@@ -1,12 +1,16 @@
 ﻿using Core.DTO;
 using Core.Services.AccountService;
 using Infrastructure.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 using static Core.Services.AccountService.AccountService;
 
 namespace Food_Ordering_API.Controllers
@@ -19,58 +23,35 @@ namespace Food_Ordering_API.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
         private readonly RoleManager<IdentityRole> _roleManager; // <-- Add this line
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ILogger<AccountApiController> _logger; 
 
-        public AccountApiController( AccountService accountService,UserManager<ApplicationUser> userManager,  RoleManager<IdentityRole> roleManager,    IConfiguration configuration)
+        public AccountApiController(AccountService accountService, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, SignInManager<ApplicationUser> signInManager, ILogger<AccountApiController> logger) // <-- Add this
         {
             _accountService = accountService;
             _userManager = userManager;
-            _roleManager = roleManager; // <-- Add this line
+            _roleManager = roleManager;
             _configuration = configuration;
+            _signInManager = signInManager; // <-- Add this
+            _logger = logger;
         }
 
-        [HttpPost("RegisterAdmin")]
-        public async Task<IActionResult> AddAdmin([FromBody] UserDto model)
+        [HttpPost("Register/{roleName}")]
+        public async Task<IActionResult> AddUser(string roleName, [FromBody] UserDto model)
         {
-            try
+            var existingUser = await _accountService.FindUserAsync(model.Username);
+            if (existingUser != null)
             {
-                string roleName = "Admin";
-
-
-                await _accountService.AddAdminAsync(model.Username, model.Password);
-                var user = await _userManager.FindByNameAsync(model.Username);
-                await _userManager.AddToRoleAsync(user, roleName);
-
-                return Ok(new { Message = "Admin added successfully" });
+                return BadRequest(new { Message = "User already exists" });
             }
-            catch (IdentityException ex)
+            if (await _accountService.AddUserAsync(model.Username, model.Password, roleName))
             {
-                return BadRequest(ex.Errors);
+                // Generate JWT after user creation
+                var user = await _accountService.FindUserAsync(model.Username);
+                var token = await GenerateJwtToken(user);
+                return Ok(new { Message = "Successfully logged in", userId = user.Id, Token = token });
             }
-        }
-
-        [HttpPost("RegisterCustomer")]
-        public async Task<IActionResult> AddCustomer([FromBody] UserDto model)
-        {
-            string roleName = "Customer";
-
-
-            await _accountService.AddCustomerAsync(model.Username, model.Password);
-            var user = await _userManager.FindByNameAsync(model.Username);
-            await _userManager.AddToRoleAsync(user, roleName);
-
-            return Ok(new { Message = "Customer added successfully" });
-        }
-
-        [HttpPost("RegisterRestaurant")]
-        public async Task<IActionResult> AddRestaurant([FromBody] UserDto model)
-        {
-            string roleName = "Restaurant";
-
-            await _accountService.AddRestaurantAsync(model.Username, model.Password);
-            var user = await _userManager.FindByNameAsync(model.Username);
-            await _userManager.AddToRoleAsync(user, roleName);
-
-            return Ok(new { Message = "Restaurant added successfully" });
+            return BadRequest("Failed to create user");
         }
 
         // Your API
@@ -80,35 +61,17 @@ namespace Food_Ordering_API.Controllers
             try
             {
                 var user = await _accountService.LoginAsync(model.UsernameOrEmail, model.Password);
-                var roles = await _userManager.GetRolesAsync(user);
 
-                var claims = new List<Claim>
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email)
-            };
-
-                foreach (var role in roles)
+                if (user != null)
                 {
-                    claims.Add(new Claim(ClaimTypes.Role, role));
+                    var token = await GenerateJwtToken(user);
+                    return Ok(new
+                    {
+                        message = "Successfully logged in",
+                        userId = user.Id,
+                        token = token
+                    });
                 }
-
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-                var token = new JwtSecurityToken(
-                    issuer: _configuration["Jwt:Issuer"],
-                    audience: _configuration["Jwt:Audience"],
-                    claims: claims,
-                    expires: DateTime.Now.AddMinutes(30),
-                    signingCredentials: creds
-                );
-
-                return Ok(new
-                {
-                    message = "Successfully logged in",
-                    userId = user.Id,
-                    token = new JwtSecurityTokenHandler().WriteToken(token)
-                });
             }
             catch (AccountService.UserNotFoundException)
             {
@@ -118,15 +81,72 @@ namespace Food_Ordering_API.Controllers
             {
                 return Unauthorized(new { message = "Invalid credentials" });
             }
+
+            return BadRequest(new { message = "An unknown error occurred" });
+        }
+        [HttpPost("GoogleLogin")]
+        public async Task<IActionResult> GoogleLogin([FromBody] LoginDto model)
+        {
+            if (model == null || string.IsNullOrEmpty(model.UsernameOrEmail))
+            {
+                return BadRequest("Invalid data.");
+            }
+
+            string email = model.UsernameOrEmail;
+
+            // Check if the user exists in the database
+            var user = await _accountService.FindUserAsync(email);
+
+            if (user != null)
+            {
+                var token = await GenerateJwtToken(user);
+                return Ok(new { Message = "Successfully logged in", userId = user.Id, Token = token });
+            }
+            else
+            {
+                return BadRequest("User not registered.");
+            }
         }
 
-        [HttpPost("Logout")]
-        public IActionResult Logout()
+        private async Task<string> GenerateJwtToken(ApplicationUser user)
         {
-            // Remove the token from client storage via client-side code.
-            // Optionally, add the token to a server-side blacklist.
-            return Ok(new { Message = "Logged out successfully" });
+            var roles = await _userManager.GetRolesAsync(user);
+
+            var claims = new List<Claim>
+        {
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+            new Claim(JwtRegisteredClaimNames.Email, user.Email)
+        };
+
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["Jwt:Issuer"],
+                audience: _configuration["Jwt:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(30),
+                signingCredentials: creds
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+        // API controller
+        [HttpPost("Logout")]
+        public async Task<IActionResult> Logout()
+        {
+            // Invalidate token, remove from cache, or whatever needed
+            // ...
+
+            return Ok(new { message = "Successfully logged out" });
+        }
+
 
 
     }

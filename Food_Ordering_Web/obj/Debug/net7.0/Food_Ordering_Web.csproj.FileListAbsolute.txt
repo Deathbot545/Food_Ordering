@@ -105,3 +105,4 @@ D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Swa
 D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Food_Ordering_API.dll
 D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Food_Ordering_API.pdb
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Newtonsoft.Json.dll
