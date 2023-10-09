@@ -36,87 +36,43 @@
                                     <label class="form-check-label" for="checkAll">Select All</label>
                                 </div>
                             </th>
-                            <th scope="col">Outlet Name</th>
-                            <th scope="col">Location</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Sales Volume</th>
-                            <th scope="col">Inventory</th>
-                            <th scope="col">Ratings</th>
-                            <th scope="col">Managers</th>
+                            <th scope="col">Customer-Facing Name</th>
+                            <th scope="col">Business Type</th>
+                            <th scope="col">Date Opened</th>
                             <th scope="col">Employee Count</th>
                             <th scope="col">Operating Hours</th>
-                            <th scope="col">Social Media</th>
+                            <th scope="col">Contact</th>
+                            <th scope="col">Created At</th>
+                            <th scope="col">Updated At</th>
                         </tr>
                     </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">
-                            <div class="form-check">
-                                <input class="form-check-input checkbox-item" type="checkbox">
-                            </div>
-                        </th>
-                        <td>Outlet A</td>
-                        <td>New York</td>
-                       
-                        <td>Open</td>
-                        <td>$20,000</td>
-                        <td>In Stock</td>
-                        <td>4.5</td>
-                       
-                        <td>John Doe</td>
-                        <td>15</td>
-                        <td>9AM-9PM</td>
-                        <td><i class="fab fa-facebook"></i> <i class="fab fa-twitter"></i></td>
-                       
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <div class="form-check">
-                                <input class="form-check-input checkbox-item" type="checkbox">
-                            </div>
-                        </th>
-                        <td>Outlet B</td>
-                        <td>San Francisco</td>
-                       
-                        <td>Open</td>
-                        <td>$15,000</td>
-                        <td>In Stock</td>
-                        <td>4.3</td>
-                       
-                        <td>Jane Smith</td>
-                        <td>12</td>
-                        <td>8AM-8PM</td>
-                        <td><i class="fab fa-facebook"></i> <i class="fab fa-instagram"></i></td>
-                       
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <div class="form-check">
-                                <input class="form-check-input checkbox-item" type="checkbox">
-                            </div>
-                        </th>
-                        <td>Outlet C</td>
-                        <td>Los Angeles</td>
-                       
-                        <td>Closed</td>
-                        <td>$30,000</td>
-                        <td>Out of Stock</td>
-                        <td>4.7</td>
-                        <td>Emily Johnson</td>
-                        <td>18</td>
-                        <td>10AM-10PM</td>
-                        <td><i class="fab fa-linkedin"></i> <i class="fab fa-twitter"></i></td>
-                       
-                    </tr>
-                    
 
-                    <!-- Add more rows similar to the above -->
-                </tbody>
+                    <tbody>
+                        @foreach (var outlet in Model)
+                        {
+                            <tr data-id="@outlet.Id">
+                                <th scope="row">
+                                    <div class="form-check">
+                                        <input class="form-check-input checkbox-item" type="checkbox">
+                                    </div>
+                                </th>
+                                <td>@outlet.CustomerFacingName</td>
+                                <td>@outlet.BusinessType</td>
+                                <td>@outlet.DateOpened.ToShortDateString()</td>
+                                <td>@outlet.EmployeeCount</td>
+                                <td>@outlet.OperatingHoursStart.ToString(@"hh\:mm") - @outlet.OperatingHoursEnd.ToString(@"hh\:mm")</td>
+                                <td>@outlet.Contact</td>
+                                <td>@outlet.CreatedAt.ToShortDateString()</td>
+                                <td>@outlet.UpdatedAt.ToShortDateString()</td>
+                                <!-- Add any other fields that you'd like to display -->
+                            </tr>
+                        }
+                    </tbody>
             </table>
             </div>
         </div>
     </div>
-    <div id="outletInfo" class="mt-4 p-4 rounded  text-bg-dark mb-3 ">
+    <div id="outletInfo" class="mt-4 p-4 rounded  text-bg-light mb-3 ">
         <h4>Selected Outlet Information:</h4>
         <div id="outletDetails">
             <div class="row">
@@ -175,14 +131,10 @@
                 </div>
                 <div class="col-md-3">
                     <h5>QR Code:</h5>
-                    <img id="qrCode" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/330px-QR_code_for_mobile_English_Wikipedia.svg.png" alt="QR Code for Ordering" class="qr-code-img" />
+                    <svg id="qrCode"></svg>
                 </div>
-
             </div>
-
         </div>
-
-
         <div class="row">
             <div class="col-md-9">
                 <h5>Customer Reviews:</h5>
@@ -191,33 +143,58 @@
             <div class="col-md-3">
                 <a class="btn btn-outline-light rounded-pill" href="#">Download QR</a>
             </div>
-            <a class="btn btn-outline-success rounded-pill" href="#">View Outlet</a>
+            <a id="viewOutletBtn" class="btn btn-outline-success rounded-pill" href="#">View Outlet</a>
+
         </div>
-
-
-
     </div>
-    
-
-
 </main>
 
 <script>
-    // JavaScript to handle 'Select All' functionality
-    document.addEventListener('DOMContentLoaded', function () {
-        const checkAllBox = document.getElementById("checkAll");
-        const checkboxes = document.querySelectorAll(".checkbox-item");
-
-        checkAllBox.addEventListener("change", function () {
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = checkAllBox.checked;
-            });
+    $(document).ready(function () {
+        // Handle checkbox selection logic
+        $('.checkbox-item').click(function () {
+            // Deselect all checkboxes
+            $('.checkbox-item').prop('checked', false);
+            // Select the clicked one
+            $(this).prop('checked', true);
+            // Fetch the outletId from the closest row
+            const outletId = $(this).closest('tr').data('id');
+            fetchOutletData(outletId);
         });
 
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener("change", function () {
-                checkAllBox.checked = Array.from(checkboxes).every(c => c.checked);
-            });
-        });
+        // If you need initial data, you can make an initial call here.
+        // fetchOutletData(1);  // Replace with the actual outlet ID
     });
+
+
+    function fetchOutletData(outletId) {
+        $.ajax({
+            url: `https://localhost:7115/api/Outletapi/GetOutletWithQRCode/${outletId}`,
+            type: 'GET',
+            crossDomain: true,
+
+            success: function (response) {
+                console.log('API Response:', response);  // Debug line
+                // Populate fields based on your actual Outlet model
+                $("#outletName").text(response.customerFacingName);
+                $("#outletLocation").text(`${response.city}, ${response.state}`);
+                $("#outletContact").text(response.contact);
+                // ... Populate other fields ...
+
+                const operatingHours = `${response.operatingHoursStart} - ${response.operatingHoursEnd}`;
+                $("#operatingHours").text(operatingHours);
+
+                // Populate QR code image
+                if (response.qrCodeData) {
+                    // Directly use the string as SVG content
+                    $("#qrCode").html(response.qrCodeData);
+                    console.log("SVG content:", response.qrCodeData);
+                }
+            },
+            error: function (error) {
+                console.error(`Error fetching outlet data: ${JSON.stringify(error)}`);
+            }
+        });
+    }
+
 </script>

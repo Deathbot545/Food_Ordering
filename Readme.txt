@@ -35,6 +35,8 @@
 
 so this is my Project A application that is made for customers and restaurants this is made for easy ordering for the customer to scan a QR code and place a Order so how would that work (just the web app) we need to register shops and customers both 
 
-
-Add-Migration First_1 -Context AppDbContext
+Add-Migration First_1 -Context MasterDbContext
+update-database -Context MasterDbContext
+Add-Migration First_1 -Context DynamicDbContext
 update-database -Context AppDbContext
+

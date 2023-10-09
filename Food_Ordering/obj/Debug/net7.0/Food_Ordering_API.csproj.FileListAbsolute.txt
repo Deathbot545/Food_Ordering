@@ -70,3 +70,8 @@ D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\Microso
 D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
 D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\Mono.TextTemplating.dll
 D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\System.CodeDom.dll
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\System.Drawing.Common.dll
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\zxing.dll
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll

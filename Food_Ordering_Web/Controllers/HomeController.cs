@@ -22,88 +22,24 @@ namespace Food_Ordering_Web.Controllers
             _httpClient = httpClientFactory.CreateClient("API");
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            // Prepare the request URL. For example, let's say your API is running locally on port 5001
-            string requestUrl = "https://localhost:7248/api/auth/isUserSignedIn";
-
-            // Execute the request using HttpClient
-            HttpResponseMessage response = await _httpClient.GetAsync(requestUrl);
-
-            // Check the response
-            if (response.IsSuccessStatusCode)
+            if (User.Identity.IsAuthenticated)
             {
-                // Read the content as a string
-                string contentString = await response.Content.ReadAsStringAsync();
-
-                // Deserialize the JSON string into a C# object
-                var userStatus = JsonSerializer.Deserialize<UserStatusDTO>(contentString);
-
-                if (userStatus.IsSignedIn)
-                {
-                    // Get user's role and redirect accordingly
-                    var userRole = userStatus.Roles.FirstOrDefault(); // Assuming there's at least one role
-
-                    // Redirect based on role
-                    return RedirectToRoleBasedView(userRole, "/");
-                }
+                var userRole = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+                return RedirectToRoleBasedView(userRole);
             }
-            else
-            {
-                // Log or handle errors here
-                _logger.LogError($"Failed to check user status. API responded with status code {response.StatusCode}");
-            }
-
             return View();
         }
 
-        
-        public async Task<IActionResult> Login(LoginModel model)
+        private IActionResult RedirectToRoleBasedView(string userRole)
         {
-            var response = await _httpClient.PostAsJsonAsync("API_URL_HERE/Auth/Login", model);
-
-            if (response.IsSuccessStatusCode)
+            if (string.IsNullOrEmpty(userRole))
             {
-                var authInfo = await response.Content.ReadFromJsonAsync<AuthResponse>();
-                var cookieOptions = new CookieOptions
-                {
-                    HttpOnly = true,
-                    Expires = authInfo.Expiration
-                };
-                Response.Cookies.Append("JWTToken", authInfo.Token, cookieOptions);
+                return RedirectToAction("Index", "Home");
             }
 
-            else
-            {
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            }
-            return View(model);
-        }
-
-        public class AuthResponse
-        {
-            public string Token { get; set; }
-            public DateTime Expiration { get; set; }
-        }
-
-        private IActionResult RedirectToRoleBasedView(string userRole, string defaultUrl)
-        {
-            switch (userRole)
-            {
-                case "Admin":
-                    return RedirectToAction("Index", "Admin");
-                case "Customer":
-                    return RedirectToAction("Index", "Customer");
-                case "Restaurant":
-                    return RedirectToAction("Index", "Restaurant");
-                default:
-                    return LocalRedirect(defaultUrl ?? "/");  // If defaultUrl is null, redirect to home page
-            }
-        }
-        [Authorize]
-        public IActionResult Profile()
-        {
-            return View("~/Views/Home/Profile.cshtml");
+            return RedirectToAction("Index", userRole);
         }
 
         public IActionResult Privacy()

@@ -1,4 +1,5 @@
 using Core.Services.AccountService;
+using Core.Services.User;
 using Infrastructure.Data;
 using Infrastructure.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -24,6 +25,7 @@ builder.Services.AddDistributedMemoryCache();
 
 // Register AccountService
 builder.Services.AddScoped<AccountService, AccountService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);

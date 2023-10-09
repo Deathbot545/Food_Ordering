@@ -36,7 +36,7 @@ namespace Food_Ordering_API.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _httpClient = new HttpClient(); // Or however you get your HttpClient
-            _apiBaseUrl = configuration.GetValue<string>("ApiBaseUrl");  // Initialize it here
+            _apiBaseUrl = $"{configuration.GetValue<string>("ApiBaseUrl")}api/AccountApi";  // Modify it here
             _logger = logger;
         }
 
@@ -101,8 +101,6 @@ namespace Food_Ordering_API.Controllers
                 // Redirect to the specified action and controller
             }
         }
-
-
 
         public IActionResult Login()
         {

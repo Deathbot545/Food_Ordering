@@ -1,54 +1,23 @@
-﻿
+﻿@model Core.ViewModels.UserProfileModel
 
+<!-- Your HTML layout -->
 <div class="container mt-4">
     <h4 class="mb-3">Personal Details</h4>
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    <strong>Name:</strong> Name
+                    <strong>Username:</strong> @Model.UserName
                 </div>
                 <div class="col-md-6">
-                 
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <strong>Phone:</strong> 07778779
-                </div>
-            </div>
-            <hr>
-            <!-- Address Section -->
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <strong>Street Address:</strong> 
-                </div>
-                <div class="col-md-6">
-                    <strong>City:</strong> 
-                </div>
-                <div class="col-md-6 mt-2">
-                    <strong>State:</strong> 
-                </div>
-                <div class="col-md-6 mt-2">
-                    <strong>Zip Code:</strong> 
-                </div>
-                <div class="col-md-6 mt-2">
-                    <strong>Country:</strong> 
-                </div>
-            </div>
-            <hr>
-            <!-- Delivery Instructions -->
-            <div class="row mt-3">
-                <div class="col-12">
-                    <strong>Delivery Instructions:</strong> 
+                    <strong>Email:</strong> @Model.Email
                 </div>
             </div>
         </div>
     </div>
 
     <div class="text-right mt-3">
-        <a href="@Url.Action("EditProfile", "User")" class="btn btn-primary">Edit Profile</a>
-        <a href="@Url.Action("ChangePassword", "User")" class="btn btn-secondary">Change Password</a>
+        <a href="@Url.Action("EditProfile", "UserProfileMVC")" class="btn btn-primary">Edit Profile</a>
+        <a href="@Url.Action("ChangePassword", "UserProfileMVC")" class="btn btn-secondary">Change Password</a>
     </div>
-
 </div>
