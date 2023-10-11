@@ -22,6 +22,27 @@ namespace Restaurant_API.Controllers
         {
             _outletService = outletService;
         }
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteOutlet(int id)
+        {
+            try
+            {
+                var result = await _outletService.DeleteOutletByIdAsync(id);
+                if (result)
+                {
+                    return Ok(new { Message = "Outlet successfully deleted" });
+                }
+                else
+                {
+                    return NotFound(new { Message = "Outlet not found" });
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception, consider using a logging framework
+                return BadRequest(new { Message = "An error occurred", Details = ex.Message });
+            }
+        }
 
         [HttpGet("GetOutletsByOwner/{ownerId}")]
         public async Task<IActionResult> GetOutletsByOwner(Guid ownerId)
@@ -60,29 +81,7 @@ namespace Restaurant_API.Controllers
                 return StatusCode(500, new { Success = false, Message = ex.Message });
             }
         }
-        [HttpGet("GetOutletWithQRCode/{id}")]
-        public async Task<IActionResult> GetOutletWithQRCode(int id)
-        {
-            var outlet = await _outletService.GetOutletWithQRCodeAsync(id);
-            if (outlet == null)
-            {
-                return NotFound();
-            }
-
-            // Convert to DTO
-            OutletDtoAndConverter.OutletDto outletDto = OutletDtoAndConverter.ConvertToDto(outlet);
-
-            // Serialize to JSON
-            var jsonOptions = new JsonSerializerOptions
-            {
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            };
-            string json = JsonSerializer.Serialize(outletDto, jsonOptions);
-
-            return Content(json, "application/json");
-        }
-
+     
 
     }
 }

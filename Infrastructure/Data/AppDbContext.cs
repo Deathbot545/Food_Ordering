@@ -20,15 +20,13 @@ namespace Infrastructure.Data
         // Your DbSets and configurations go here
         public DbSet<Outlet> Outlets { get; set; }  // Make it public
         public DbSet<QRCode> QRCodes { get; set; }  // Make it public
+        public DbSet<Table> Tables { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Outlet>()
-                   .HasOne(a => a.QRCode)
-                   .WithOne(b => b.Outlet)
-                   .HasForeignKey<QRCode>(b => b.Id); // QRCode.Id is foreign key
+          
         }
     }
 }

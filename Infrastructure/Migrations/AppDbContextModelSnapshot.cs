@@ -130,16 +130,8 @@ namespace Infrastructure.Migrations
                     b.Property<int>("EmployeeCount")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Facebook")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<bool>("HealthAndSafetyCompliance")
                         .HasColumnType("boolean");
-
-                    b.Property<string>("Instagram")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<string>("InternalOutletName")
                         .IsRequired()
@@ -177,10 +169,6 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Twitter")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -196,7 +184,10 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Infrastructure.Models.QRCode", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<byte[]>("Data")
                         .IsRequired()
@@ -206,9 +197,37 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("TableId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("TableId")
+                        .IsUnique();
+
                     b.ToTable("QRCodes");
+                });
+
+            modelBuilder.Entity("Infrastructure.Models.Table", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OutletId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("TableIdentifier")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OutletId");
+
+                    b.ToTable("Tables");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -345,9 +364,20 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Infrastructure.Models.QRCode", b =>
                 {
-                    b.HasOne("Infrastructure.Models.Outlet", "Outlet")
+                    b.HasOne("Infrastructure.Models.Table", "Table")
                         .WithOne("QRCode")
-                        .HasForeignKey("Infrastructure.Models.QRCode", "Id")
+                        .HasForeignKey("Infrastructure.Models.QRCode", "TableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Table");
+                });
+
+            modelBuilder.Entity("Infrastructure.Models.Table", b =>
+                {
+                    b.HasOne("Infrastructure.Models.Outlet", "Outlet")
+                        .WithMany("Tables")
+                        .HasForeignKey("OutletId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -407,7 +437,13 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Infrastructure.Models.Outlet", b =>
                 {
-                    b.Navigation("QRCode");
+                    b.Navigation("Tables");
+                });
+
+            modelBuilder.Entity("Infrastructure.Models.Table", b =>
+                {
+                    b.Navigation("QRCode")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

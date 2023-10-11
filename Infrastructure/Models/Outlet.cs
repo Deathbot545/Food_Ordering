@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,6 +10,10 @@ namespace Infrastructure.Models
 {
     public class Outlet
     {
+        public Outlet()
+        {
+            Tables = new List<Table>(); // Initialize to empty list here
+        }
         [Key] public int Id { get; set; }
         public string InternalOutletName { get; set; }
         public string CustomerFacingName { get; set; }
@@ -29,9 +34,6 @@ namespace Infrastructure.Models
         [DataType(DataType.Time)]
         public TimeSpan OperatingHoursEnd { get; set; }
         public string Contact { get; set; }
-        public string Facebook { get; set; }
-        public string Twitter { get; set; }
-        public string Instagram { get; set; }
         [Required(ErrorMessage = "You must agree to the terms and conditions.")]
         public bool AgreeToTerms { get; set; }
         public DateTime CreatedAt { get; set; }
@@ -40,7 +42,6 @@ namespace Infrastructure.Models
         public Guid OwnerId { get; set; } // Foreign key if you have a User model
         public byte[] Logo { get; set; }
         public byte[] RestaurantImage { get; set; }
-        public QRCode? QRCode { get; set; } // Updated line
-
+        public ICollection<Table> Tables { get; set; } // one-to-many with Table
     }
 }

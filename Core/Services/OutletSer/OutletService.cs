@@ -25,6 +25,7 @@ namespace Core.Services.OutletSer
         {
             return await _context.Outlets.Where(x => x.OwnerId == ownerId && !x.IsDeleted).ToListAsync();
         }
+     
 
         public async Task<Outlet> RegisterOutletAsync(Outlet outlet, string currentUserId)
         {
@@ -55,20 +56,6 @@ namespace Core.Services.OutletSer
                     SetDateTimePropertiesToUtc(outlet);
                     await _context.SaveChangesAsync();
 
-                    // Now the outlet should have an ID
-                    // Generate QR code
-                    QRCode qrCode = GenerateQRCodeForOutlet(outlet.Id);
-
-                    // Attach QR code entity to the outlet
-                    outlet.QRCode = qrCode;
-
-                    // Save QRCode to database
-                    await _context.QRCodes.AddAsync(qrCode);
-
-                    // Update Outlet to associate the new QRCode
-                    _context.Outlets.Update(outlet);
-
-                    await _context.SaveChangesAsync();
 
                     await transaction.CommitAsync();
 
@@ -82,10 +69,96 @@ namespace Core.Services.OutletSer
                 }
             }
         }
+        public async Task<bool> DeleteOutletByIdAsync(int id)
+        {
+            // Find the outlet first
+            var outlet = await _context.Outlets.FindAsync(id);
+
+            if (outlet == null)
+            {
+                return false;
+            }
+
+            // Get all tables for this outlet
+            var tables = GetTablesByOutlet(id);
+
+            // Remove QRCode and tables
+            foreach (var table in tables)
+            {
+                RemoveQRCode(table.Id);
+            }
+
+            // Now remove the outlet
+            _context.Outlets.Remove(outlet);
+
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
 
 
+        public List<Table> GetTablesByOutlet(int outletId)
+        {
+            return _context.Tables
+                .Where(t => t.OutletId == outletId)
+                .Include(t => t.QRCode)
+                .ToList();
+        }
+        public bool RemoveQRCode(int tableId)
+        {
+            var table = _context.Tables.Include(t => t.QRCode).SingleOrDefault(t => t.Id == tableId);
+            if (table == null) return false;
 
-        public QRCode GenerateQRCodeForOutlet(int outletId)
+            // Remove the associated QRCode entity
+            if (table.QRCode != null)
+            {
+                _context.QRCodes.Remove(table.QRCode);
+            }
+
+            // Remove the table itself (optional, uncomment the line below if you wish to remove the table)
+            _context.Tables.Remove(table);
+
+            _context.SaveChanges();
+            return true;
+        }
+
+
+        public (Table, QRCode) AddTableAndGenerateQRCode(int outletId, string tableName)
+        {
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    // Create new table
+                    var newTable = new Table
+                    {
+                        TableIdentifier = tableName,
+                        OutletId = outletId
+                    };
+
+                    _context.Tables.Add(newTable);
+                    _context.SaveChanges(); // This will set the new ID if it's auto-generated
+
+                    // Generate QR Code
+                    var qrCode = GenerateQRCodeForTable(outletId, newTable.Id);
+                    _context.QRCodes.Add(qrCode);
+                    _context.SaveChanges();
+
+                    // Commit the transaction
+                    transaction.Commit();
+
+                    return (newTable, qrCode);
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception and roll back the transaction
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+        }
+
+        public QRCode GenerateQRCodeForTable(int outletId, int tableId)
         {
             var qrCodeWriter = new BarcodeWriterSvg
             {
@@ -97,17 +170,21 @@ namespace Core.Services.OutletSer
                 }
             };
 
-            var urlToEncode = $"https://localhost:7115/api/OutletApi/GetOutletsByOwner/{outletId}";
+            // Include table number in the URL
+            var urlToEncode = $"https://localhost:7115/api/OutletApi/GetOutletsByOwner/{outletId}/Table/{tableId}";
             var svgContent = qrCodeWriter.Write(urlToEncode);
 
             var qrCode = new QRCode
             {
                 Data = Encoding.UTF8.GetBytes(svgContent.Content),
-                MimeType = "image/svg+xml"
+                MimeType = "image/svg+xml",
+                TableId = tableId  // Assuming QRCode entity now has a TableNumber property
             };
 
             return qrCode;
         }
+       
+
         public static void SetDateTimePropertiesToUtc(object obj)
         {
             foreach (var property in obj.GetType().GetProperties())
@@ -120,34 +197,6 @@ namespace Core.Services.OutletSer
                         property.SetValue(obj, DateTime.SpecifyKind(dt, DateTimeKind.Utc));
                     }
                 }
-            }
-        }
-        public async Task<Outlet> GetOutletWithQRCodeAsync(int outletId)
-        {
-            if (outletId <= 0)
-            {
-                throw new ArgumentException("Invalid outlet ID", nameof(outletId));
-            }
-
-            try
-            {
-                var outlet = await _context.Outlets
-                                           .Include(o => o.QRCode) // Include the QRCode
-                                           .FirstOrDefaultAsync(o => o.Id == outletId && !o.IsDeleted);
-
-                if (outlet == null)
-                {
-                    // Log or handle not found situation
-                    return null;
-                }
-
-                return outlet;
-            }
-            catch (Exception ex)
-            {
-                // Log the exception
-                // E.g., Console.WriteLine($"General Exception: {ex.Message}");
-                throw;
             }
         }
 

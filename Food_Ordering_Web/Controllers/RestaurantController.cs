@@ -63,6 +63,19 @@ namespace Food_Ordering_Web.Controllers
         {
             return View("~/Views/Owner/Manage.cshtml");
         }
+        public IActionResult Tables(int id, string customerFacingName, string internalOutletName)
+        {
+            ViewBag.OutletId = id;
+            ViewBag.CustomerFacingName = customerFacingName;
+            ViewBag.InternalOutletName = internalOutletName;
+            return View("~/Views/Owner/Tables.cshtml");
+        }
+
+        private List<Table> FetchTablesByOutletId(int id)
+        {
+            // Fetch tables based on outlet ID and return
+            return new List<Table>(); // Replace with your actual logic
+        }
 
         public async Task<IActionResult> AddOutlet([FromForm] Outlet outlet, [FromForm] IFormFile Logo, [FromForm] IFormFile RestaurantImage)
         {
@@ -99,18 +112,37 @@ namespace Food_Ordering_Web.Controllers
             var fullApiEndpoint = $"{_httpClient.BaseAddress}{apiEndpoint}";
             var response = await _httpClient.PostAsync(fullApiEndpoint, content);
 
-           
-            if (response.StatusCode == HttpStatusCode.BadRequest)
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                string conten = await response.Content.ReadAsStringAsync();
+                var apiResponse = JsonConvert.DeserializeObject<ApiOutletResponse>(conten);
+
+                if (apiResponse.Success)
+                {
+                    return Json(new { success = true });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "API indicated failure but returned 200 OK" });
+                }
+            }
+            else if (response.StatusCode == HttpStatusCode.BadRequest)
             {
                 string c = await response.Content.ReadAsStringAsync();
                 _logger.LogWarning($"Bad Request: {c}");
                 return Json(new { success = false });
             }
-
             else
             {
                 return Json(new { success = false });
             }
+
+        }
+        public class ApiOutletResponse
+        {
+            public bool Success { get; set; }
+            public Outlet Outlet { get; set; }
         }
 
     }

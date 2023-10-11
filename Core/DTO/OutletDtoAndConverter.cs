@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.DTO
 {
-    public class OutletDtoAndConverter
+   /* public class OutletDtoAndConverter
     {
         public class OutletDto
         {
@@ -36,5 +36,5 @@ namespace Core.DTO
                 // Convert byte array to string. Adapt this line to your actual scenario.
             };
         }
-    }
+    }*/
 }

@@ -10,9 +10,11 @@ namespace Core.Services.OutletSer
     public interface IOutletService
     {
         Task<Outlet> RegisterOutletAsync(Outlet outlet, string currentUserId);
-        QRCode GenerateQRCodeForOutlet(int outletId );
-        Task<Outlet> GetOutletWithQRCodeAsync(int outletId);
         Task<List<Outlet>> GetOutletsByOwner(Guid ownerId);
+        List<Table> GetTablesByOutlet(int outletId);
+        (Table, QRCode) AddTableAndGenerateQRCode(int outletId, string tableName);
+        bool RemoveQRCode(int tableId);
+        Task<bool> DeleteOutletByIdAsync(int id);
         // Add other methods related to Outlet management
     }
 
