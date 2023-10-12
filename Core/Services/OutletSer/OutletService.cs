@@ -89,26 +89,40 @@ namespace Core.Services.OutletSer
         public async Task<bool> DeleteOutletByIdAsync(int id)
         {
             // Find the outlet first
-            var outlet = await _context.Outlets.FindAsync(id);
+            var outlet = await _context.Outlets.Include(o => o.Tables).FirstOrDefaultAsync(o => o.Id == id);
 
             if (outlet == null)
             {
                 return false;
             }
+
             // Get the Menu associated with the Outlet
-            var menu = await _context.Menu.FindAsync(outlet.MenuId);
+            var menu = await _context.Menu
+                .Include(m => m.MenuCategories)
+                .ThenInclude(mc => mc.MenuItems)
+                .FirstOrDefaultAsync(m => m.Id == outlet.MenuId);
 
             if (menu != null)
             {
+                // Remove MenuItems and MenuCategories
+                foreach (var menuCategory in menu.MenuCategories)
+                {
+                    // Removing MenuItems
+                    _context.RemoveRange(menuCategory.MenuItems);
+                }
+
+                // Removing MenuCategories
+                _context.RemoveRange(menu.MenuCategories);
+
+                // Remove the menu itself
                 _context.Menu.Remove(menu);
             }
-            // Get all tables for this outlet
-            var tables = GetTablesByOutlet(id);
 
             // Remove QRCode and tables
-            foreach (var table in tables)
+            foreach (var table in outlet.Tables)
             {
                 RemoveQRCode(table.Id);
+                _context.Tables.Remove(table); // Assuming Tables are already loaded in the outlet entity
             }
 
             // Now remove the outlet
@@ -118,6 +132,7 @@ namespace Core.Services.OutletSer
 
             return true;
         }
+
 
         public List<Table> GetTablesByOutlet(int outletId)
         {
