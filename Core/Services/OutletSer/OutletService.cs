@@ -25,8 +25,6 @@ namespace Core.Services.OutletSer
         {
             return await _context.Outlets.Where(x => x.OwnerId == ownerId && !x.IsDeleted).ToListAsync();
         }
-     
-
         public async Task<Outlet> RegisterOutletAsync(Outlet outlet, string currentUserId)
         {
             if (outlet == null)
@@ -46,8 +44,7 @@ namespace Core.Services.OutletSer
                     // Set the OwnerId to the current user's ID
                     outlet.OwnerId = Guid.Parse(currentUserId);
 
-                    // Example, assuming Outlet has a DateTime field named CreatedAt and UpdatedAt
-                    // Ensure DateTime is in UTC
+                    // Set DateTime fields
                     outlet.CreatedAt = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
                     outlet.UpdatedAt = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
 
@@ -56,6 +53,25 @@ namespace Core.Services.OutletSer
                     SetDateTimePropertiesToUtc(outlet);
                     await _context.SaveChangesAsync();
 
+                    // Create a new Menu and associate it with the Outlet
+                    Menu newMenu = new Menu
+                    {
+                        // Assuming Name, CreatedAt, UpdatedAt, and OutletId are fields in your Menu entity
+                        Name = "Default Menu for " + outlet.InternalOutletName,
+                      
+                        OutletId = outlet.Id  // Set the OutletId to the newly generated Outlet Id
+                    };
+
+                    // Save Menu to database
+                    await _context.Menu.AddAsync(newMenu);
+                    await _context.SaveChangesAsync();
+
+                    // Now set the MenuId in Outlet
+                    outlet.MenuId = newMenu.Id;
+
+                    // Update the Outlet entity with the new MenuId
+                    _context.Outlets.Update(outlet);
+                    await _context.SaveChangesAsync();
 
                     await transaction.CommitAsync();
 
@@ -69,6 +85,7 @@ namespace Core.Services.OutletSer
                 }
             }
         }
+
         public async Task<bool> DeleteOutletByIdAsync(int id)
         {
             // Find the outlet first
@@ -78,7 +95,13 @@ namespace Core.Services.OutletSer
             {
                 return false;
             }
+            // Get the Menu associated with the Outlet
+            var menu = await _context.Menu.FindAsync(outlet.MenuId);
 
+            if (menu != null)
+            {
+                _context.Menu.Remove(menu);
+            }
             // Get all tables for this outlet
             var tables = GetTablesByOutlet(id);
 
@@ -95,7 +118,6 @@ namespace Core.Services.OutletSer
 
             return true;
         }
-
 
         public List<Table> GetTablesByOutlet(int outletId)
         {

@@ -1,4 +1,5 @@
 using Core.Services.AccountService;
+using Core.Services.MenuS;
 using Core.Services.OutletSer;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IOutletService, OutletService>();
+builder.Services.AddScoped<IMenuService, MenuService>();
 // Add DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));

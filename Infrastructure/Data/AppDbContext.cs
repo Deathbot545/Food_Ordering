@@ -21,12 +21,13 @@ namespace Infrastructure.Data
         public DbSet<Outlet> Outlets { get; set; }  // Make it public
         public DbSet<QRCode> QRCodes { get; set; }  // Make it public
         public DbSet<Table> Tables { get; set; }
+        public DbSet<Menu> Menu { get; set; }
+        public DbSet<MenuCategory> MenuCategories { get; set; }
+        public DbSet<MenuItem> MenuItem { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
-          
         }
     }
 }

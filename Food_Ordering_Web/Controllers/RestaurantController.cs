@@ -59,8 +59,10 @@ namespace Food_Ordering_Web.Controllers
             return View("~/Views/Owner/AddOutlet.cshtml");
         }
 
-        public IActionResult Manage()
+        public IActionResult Manage(int id, string internalOutletName)
         {
+            ViewBag.OutletId = id;
+            ViewBag.InternalOutletName = internalOutletName;
             return View("~/Views/Owner/Manage.cshtml");
         }
         public IActionResult Tables(int id, string customerFacingName, string internalOutletName)

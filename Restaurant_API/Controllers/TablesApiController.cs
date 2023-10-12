@@ -27,7 +27,6 @@ namespace Restaurant_API.Controllers
 
         // Service remains the same
 
-
         [HttpPost("AddTable")]
         public IActionResult AddTable([FromBody] AddTableDto model)
         {

@@ -86,6 +86,83 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Infrastructure.Models.Menu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("OutletId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OutletId");
+
+                    b.ToTable("Menu");
+                });
+
+            modelBuilder.Entity("Infrastructure.Models.MenuCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("MenuId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenuId");
+
+                    b.ToTable("MenuCategories");
+                });
+
+            modelBuilder.Entity("Infrastructure.Models.MenuItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<byte[]>("Image")
+                        .IsRequired()
+                        .HasColumnType("bytea");
+
+                    b.Property<int>("MenuCategoryId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenuCategoryId");
+
+                    b.ToTable("MenuItem");
+                });
+
             modelBuilder.Entity("Infrastructure.Models.Outlet", b =>
                 {
                     b.Property<int>("Id")
@@ -143,6 +220,9 @@ namespace Infrastructure.Migrations
                     b.Property<byte[]>("Logo")
                         .IsRequired()
                         .HasColumnType("bytea");
+
+                    b.Property<int>("MenuId")
+                        .HasColumnType("integer");
 
                     b.Property<TimeSpan>("OperatingHoursEnd")
                         .HasColumnType("interval");
@@ -362,6 +442,37 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Infrastructure.Models.Menu", b =>
+                {
+                    b.HasOne("Infrastructure.Models.Outlet", "Outlet")
+                        .WithMany()
+                        .HasForeignKey("OutletId");
+
+                    b.Navigation("Outlet");
+                });
+
+            modelBuilder.Entity("Infrastructure.Models.MenuCategory", b =>
+                {
+                    b.HasOne("Infrastructure.Models.Menu", "Menu")
+                        .WithMany("MenuCategories")
+                        .HasForeignKey("MenuId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Menu");
+                });
+
+            modelBuilder.Entity("Infrastructure.Models.MenuItem", b =>
+                {
+                    b.HasOne("Infrastructure.Models.MenuCategory", "MenuCategory")
+                        .WithMany("MenuItems")
+                        .HasForeignKey("MenuCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MenuCategory");
+                });
+
             modelBuilder.Entity("Infrastructure.Models.QRCode", b =>
                 {
                     b.HasOne("Infrastructure.Models.Table", "Table")
@@ -433,6 +544,16 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Infrastructure.Models.Menu", b =>
+                {
+                    b.Navigation("MenuCategories");
+                });
+
+            modelBuilder.Entity("Infrastructure.Models.MenuCategory", b =>
+                {
+                    b.Navigation("MenuItems");
                 });
 
             modelBuilder.Entity("Infrastructure.Models.Outlet", b =>
