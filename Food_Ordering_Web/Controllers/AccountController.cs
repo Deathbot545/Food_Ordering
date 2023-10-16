@@ -39,7 +39,20 @@ namespace Food_Ordering_API.Controllers
             _apiBaseUrl = $"{configuration.GetValue<string>("ApiBaseUrl")}api/AccountApi";  // Modify it here
             _logger = logger;
         }
-
+        [HttpGet]
+        public IActionResult SpecialLogin(int outletId, int tableId)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return Redirect($"/Order/Menu?outletId={outletId}&tableId={tableId}");
+            }
+            else
+            {
+                ViewBag.OutletId = outletId;
+                ViewBag.TableId = tableId;
+                return View("~/Views/Account/SpecialLogin.cshtml"); // Make sure you have a view named "SpecialLogin"
+            }
+        }
         [HttpGet]
         public IActionResult Register()
         {

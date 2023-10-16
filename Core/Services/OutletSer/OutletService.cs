@@ -208,7 +208,9 @@ namespace Core.Services.OutletSer
             };
 
             // Include table number in the URL
-            var urlToEncode = $"https://localhost:7115/api/OutletApi/GetOutletsByOwner/{outletId}/Table/{tableId}";
+            // Point to your MVC Controller and Action instead of API endpoint
+            var urlToEncode = $"https://localhost:7257/Account/SpecialLogin?outletId={outletId}&tableId={tableId}";
+
             var svgContent = qrCodeWriter.Write(urlToEncode);
 
             var qrCode = new QRCode

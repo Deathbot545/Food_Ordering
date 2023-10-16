@@ -105,6 +105,7 @@ namespace Core.Services.MenuS
                 .Where(mi => mi.MenuCategory.MenuId == menu.Id)
                 .Select(mi => new MenuItemDto
                 {
+                    id= mi.Id,
                     Name = mi.Name,
                     Description = mi.Description,
                     Price = mi.Price,
@@ -117,6 +118,18 @@ namespace Core.Services.MenuS
             return menuItems;
         }
 
+        public async Task<bool> DeleteMenuItemAsync(int itemId)
+        {
+            var item = await _context.MenuItem.FindAsync(itemId);
+            if (item == null)
+            {
+                return false;
+            }
+
+            _context.MenuItem.Remove(item);
+            await _context.SaveChangesAsync();
+            return true;
+        }
 
     }
 

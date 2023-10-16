@@ -103,6 +103,27 @@ namespace Restaurant_API.Controllers
                 return StatusCode(500, $"Internal server error: {ex}");
             }
         }
+        [HttpDelete("DeleteMenuItem/{itemId}")]
+        public async Task<IActionResult> DeleteMenuItem(int itemId)
+        {
+            try
+            {
+                bool isDeleted = await _menuService.DeleteMenuItemAsync(itemId);
+                if (isDeleted)
+                {
+                    return Ok(new { message = "Item deleted successfully." });
+                }
+                else
+                {
+                    return NotFound(new { message = "Item not found." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex}");
+            }
+        }
+
 
     }
 }

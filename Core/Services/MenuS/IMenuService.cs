@@ -16,5 +16,6 @@ namespace Core.Services.MenuS
         Task<bool> DeleteCategoryAsync(int categoryId);
         Task<MenuItem> AddMenuItemAsync(MenuItemDto menuItemDto);
         Task<List<MenuItemDto>> GetMenuItemsByOutletIdAsync(int outletId);
+        Task<bool> DeleteMenuItemAsync(int itemId);
     }
 }
