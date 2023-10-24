@@ -19,6 +19,7 @@ using System.Net.Http.Json;
 using Newtonsoft.Json;
 using System.Net;
 using Azure;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Food_Ordering_API.Controllers
 {
@@ -125,7 +126,7 @@ namespace Food_Ordering_API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model, string actionName, string controllerName)
+        public async Task<IActionResult> Login(LoginViewModel model, string actionName, string controllerName, int? outletId = null, int? tableId = null)
         {
             var loginDto = new LoginDto
             {
@@ -152,7 +153,7 @@ namespace Food_Ordering_API.Controllers
                         SameSite = SameSiteMode.Strict
                     });
 
-                    return await HandleLogin(model.UserName, responseObject.Token, responseObject.UserId);
+                    return await HandleLogin(model.UserName, responseObject.Token, responseObject.UserId, outletId, tableId);
                 }
                 else
                 {
@@ -191,20 +192,21 @@ namespace Food_Ordering_API.Controllers
             [JsonPropertyName("token")]
             public string Token { get; set; }
         }
-      
+
 
         [HttpGet]
-        public IActionResult ExternalRegisterOrLogin(string role = null)
+        public IActionResult ExternalRegisterOrLogin(string role = null, int? outletId = null, int? tableId = null)
         {
             var properties = new AuthenticationProperties
             {
-                RedirectUri = Url.Action("GoogleResponse", new { role = role })
+                RedirectUri = Url.Action("GoogleResponse", new { role = role, outletId = outletId, tableId = tableId })
             };
             return Challenge(properties, GoogleDefaults.AuthenticationScheme);
         }
 
+
         [HttpGet]
-        public async Task<IActionResult> GoogleResponse(string role = null)
+        public async Task<IActionResult> GoogleResponse(string role = null, int? outletId = null, int? tableId = null)
         {
             var result = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
 
@@ -321,7 +323,7 @@ namespace Food_Ordering_API.Controllers
                             SameSite = SameSiteMode.Strict
                         });
 
-                        return await HandleLogin(email, responseObject.Token, responseObject.UserId);
+                        return await HandleLogin(email, responseObject.Token, responseObject.UserId, outletId, tableId);
                     }
                     else
                     {
@@ -340,7 +342,7 @@ namespace Food_Ordering_API.Controllers
             }
 
         }
-        public async Task<IActionResult> HandleLogin(string email, string token, string userId)
+        public async Task<IActionResult> HandleLogin(string email, string token, string userId, int? outletId = null, int? tableId = null)
         {
             // Decode JWT to get role
             var handler = new JwtSecurityTokenHandler();
@@ -373,7 +375,14 @@ namespace Food_Ordering_API.Controllers
                     await _signInManager.SignInWithClaimsAsync(user, isPersistent: false, claimsIdentity.Claims);
 
                     // Redirect based on role
-                    return RedirectToAction("Index", role); // Assuming you have an Index action for each role.
+                    if (outletId.HasValue && tableId.HasValue)
+                    {
+                        return Redirect($"/Order/Menu?outletId={outletId}&tableId={tableId}");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", role); // Assuming you have an Index action for each role.
+                    }
                 }
                 else
                 {

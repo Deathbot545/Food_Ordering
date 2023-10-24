@@ -1,4 +1,5 @@
-﻿using Infrastructure.Models;
+﻿using Core.DTO;
+using Infrastructure.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Core.Services.OutletSer
         (Table, QRCode) AddTableAndGenerateQRCode(int outletId, string tableName);
         bool RemoveQRCode(int tableId);
         Task<bool> DeleteOutletByIdAsync(int id);
+       Task<OutletInfoDTO> GetSpecificOutletInfoByOutletIdAsync(int outletId);
         // Add other methods related to Outlet management
     }
 

@@ -24,6 +24,8 @@ namespace Infrastructure.Data
         public DbSet<Menu> Menu { get; set; }
         public DbSet<MenuCategory> MenuCategories { get; set; }
         public DbSet<MenuItem> MenuItem { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -1,5 +1,6 @@
 ﻿using Core.DTO;
 using Core.Services.MenuS;
+using Core.Services.OutletSer;
 using Infrastructure.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,12 @@ namespace Restaurant_API.Controllers
     public class MenuApiController : Controller
     {
         private readonly IMenuService _menuService;
+        private readonly IOutletService _outletService;
 
-        public MenuApiController(IMenuService menuService)
+        public MenuApiController(IMenuService menuService,IOutletService outletService)
         {
             _menuService = menuService;
+            _outletService = outletService;
         }
 
         [HttpPost("AddCategory")]
@@ -84,7 +87,7 @@ namespace Restaurant_API.Controllers
                 return StatusCode(500, $"Internal server error: {ex}");
             }
         }
-        [HttpGet("GetMenuItems/{outletId}")]
+        [HttpGet("GetMenuItems/{outletId}")]               //MenuItem By Outlet ID
         public async Task<IActionResult> GetMenuItems(int outletId)
         {
             try
@@ -101,6 +104,48 @@ namespace Restaurant_API.Controllers
             {
                 // Log the exception details
                 return StatusCode(500, $"Internal server error: {ex}");
+            }
+        }
+        [HttpGet("GetMenuItem/{menuItemId}")]              //MenuItem by Menu Item ID
+        public async Task<IActionResult> GetMenuItem(int menuItemId)
+        {
+            try
+            {
+                var menuItem = await _menuService.GetMenuItemByIdAsync(menuItemId);
+                if (menuItem == null)
+                {
+                    return NotFound(new { message = "Menu item not found." });
+                }
+
+                return Ok(menuItem);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception details
+                return StatusCode(500, $"Internal server error: {ex}");
+            }
+        }
+
+        [HttpGet("outletInfo/{id}")]
+        public async Task<IActionResult> GetOutletInfo(int id)
+        {
+            try
+            {
+                OutletInfoDTO result = await _outletService.GetSpecificOutletInfoByOutletIdAsync(id);
+                return Ok(result);
+            }
+            catch (ArgumentException argEx)
+            {
+                return BadRequest(argEx.Message);
+            }
+            catch (InvalidOperationException invOpEx)
+            {
+                return NotFound(invOpEx.Message);
+            }
+            catch (Exception ex)
+            {
+                // Handle/log the exception as per your application's requirements
+                return StatusCode(500, "Internal server error");
             }
         }
         [HttpDelete("DeleteMenuItem/{itemId}")]

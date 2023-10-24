@@ -13,26 +13,21 @@
     ViewData["Title"] = "Login";
 }
 <style>
-    /* Custom CSS to ensure height is 100% for centering */
-    html, body {
-        height: 100%;
+    .login-container {
+        max-width: 400px; /* Set a max-width for better visual on larger screens */
+        margin: 0 auto; /* Horizontal centering */
     }
-    /* Added Styling for External Login */
+
     .external-login-container {
         text-align: center;
         border-top: 1px solid #ccc;
         padding-top: 10px;
     }
-
-        .external-login-container p {
-            margin-right: 10px;
-        }
 </style>
 
-
-
-<body class="d-flex align-items-center justify-content-center bg-body-tertiary" style="height: 100vh;">
-    <main class="form-signin w-100">
+<body class="d-flex align-items-center bg-body-tertiary" style="height: 100vh;">
+    <div class="login-container">
+        <main class="form-signin">
         <form asp-controller="Account" asp-action="Login" method="post">
             <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
             <h1 class="h3 mb-3 fw-normal">@ViewData["Title"]</h1>
@@ -61,7 +56,11 @@
                     Remember me
                 </label>
             </div>
-
+            @if (ViewBag.OutletId != null && ViewBag.TableId != null)
+            {
+                <input type="hidden" name="OutletId" value="@ViewBag.OutletId" />
+                <input type="hidden" name="TableId" value="@ViewBag.TableId" />
+            }
             <button type="submit" class="btn btn-primary w-100 py-2">Sign in</button>
 
             <div class="mt-2">
@@ -75,10 +74,16 @@
             <p>Or login using:</p>
             <form asp-controller="Account" asp-action="ExternalRegisterOrLogin" method="get" class="text-center">
                 <input type="hidden" name="provider" value="Google" />
+                @if (ViewBag.OutletId != null && ViewBag.TableId != null)
+                {
+                    <input type="hidden" name="OutletId" value="@ViewBag.OutletId" />
+                    <input type="hidden" name="TableId" value="@ViewBag.TableId" />
+                }
                 <button type="submit" class="btn btn-outline-danger">
                     <i class="fab fa-google"></i> Google
                 </button>
             </form>
         </div>
     </main>
+    </div>
 </body>

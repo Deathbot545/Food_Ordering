@@ -1,4 +1,5 @@
-﻿using Infrastructure.Data;
+﻿using Core.DTO;
+using Infrastructure.Data;
 using Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -238,6 +239,42 @@ namespace Core.Services.OutletSer
                 }
             }
         }
+        public async Task<OutletInfoDTO> GetSpecificOutletInfoByOutletIdAsync(int outletId)
+        {
+            if (outletId <= 0)
+            {
+                throw new ArgumentException("Invalid Outlet ID provided", nameof(outletId));
+            }
+
+            var outlet = await _context.Outlets
+                        .Where(o => o.Id == outletId && !o.IsDeleted)
+                        .Select(o => new
+                        {
+                            o.CustomerFacingName,
+                            o.Logo,
+                            o.RestaurantImage,
+                            o.OperatingHoursStart,
+                            o.OperatingHoursEnd,
+                            o.Contact
+                        })
+                        .FirstOrDefaultAsync();
+
+            if (outlet == null)
+            {
+                throw new InvalidOperationException($"Outlet with ID {outletId} not found.");
+            }
+
+            return new OutletInfoDTO
+            {
+                CustomerFacingName = outlet.CustomerFacingName,
+                Logo = outlet.Logo,
+                RestaurantImage = outlet.RestaurantImage,
+                OperatingHoursStart = outlet.OperatingHoursStart,
+                OperatingHoursEnd = outlet.OperatingHoursEnd,
+                Contact = outlet.Contact
+            };
+        }
+
 
     }
 

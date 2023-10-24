@@ -118,6 +118,27 @@ namespace Core.Services.MenuS
             return menuItems;
         }
 
+        public async Task<MenuItemDto> GetMenuItemByIdAsync(int menuItemId)
+        {
+            var menuItem = await _context.MenuItem
+                .Include(mi => mi.MenuCategory)
+                .Where(mi => mi.Id == menuItemId)
+                .Select(mi => new MenuItemDto
+                {
+                    id = mi.Id,
+                    Name = mi.Name,
+                    Description = mi.Description,
+                    Price = mi.Price,
+                    MenuCategoryId = mi.MenuCategoryId,
+                    CategoryName = mi.MenuCategory.Name,
+                    Image = Convert.ToBase64String(mi.Image)
+                })
+                .FirstOrDefaultAsync();
+
+            return menuItem;
+        }
+
+
         public async Task<bool> DeleteMenuItemAsync(int itemId)
         {
             var item = await _context.MenuItem.FindAsync(itemId);

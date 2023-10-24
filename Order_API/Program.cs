@@ -1,6 +1,30 @@
+using Core.Services.CartSter;
+using Core.Services.MenuS;
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var configuration = builder.Configuration;
+
+// Add DbContext
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IMenuService, MenuService>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowMyOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -16,6 +40,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowMyOrigins");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
