@@ -229,8 +229,11 @@ span.float-end {
             }),
             contentType: 'application/json',
             success: function (response) {
-                // Clear the cart from local storage after a successful checkout
                 localStorage.removeItem('cart');
+                localStorage.setItem('currentOrder', JSON.stringify({
+                    orderId: response.orderId,
+                    status: "Pending"
+                }));
             },
             error: function (error) {
                 if (error && error.responseJSON && error.responseJSON.message) {

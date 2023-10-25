@@ -1,10 +1,13 @@
 ﻿using Core.DTO;
 using Core.Services.CartSter;
 using Core.Services.MenuS;
+using Core.Services.Orderser;
 using Infrastructure.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Order_API.Hubs;
 
 namespace Order_API.Controllers
 {
@@ -15,11 +18,16 @@ namespace Order_API.Controllers
     {
        
         private readonly ICartService _cartService;
-        private readonly IMenuService _menuService;
-        public OrderApiController(ICartService cartService, IMenuService menuService) {
+        private readonly IHubContext<OrderStatusHub> _hubContext;
+        private readonly IOrderService _orderService;
+
+        public OrderApiController(IOrderService orderService, ICartService cartService, IHubContext<OrderStatusHub> hubContext)
+        {
+            _orderService = orderService;
             _cartService = cartService;
-            _menuService = menuService;
+            _hubContext = hubContext;
         }
+
         // Add item to cart
         [HttpPost("AddToCart")]
         public async Task<IActionResult> AddToCart([FromBody] CartRequest request)
@@ -33,6 +41,18 @@ namespace Order_API.Controllers
             {
                 return BadRequest(new { message = ex.Message });
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateOrderStatus(Order order)
+        {
+            // Use your service to update the order status in the database.
+            await _orderService.UpdateOrderStatusAsync(order);
+
+            // Once the order is updated in the database, notify all clients.
+            await _hubContext.Clients.All.SendAsync("ReceiveOrderUpdate", order);
+
+            return Ok();
         }
 
 

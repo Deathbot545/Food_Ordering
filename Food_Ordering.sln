@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant_API", "Restaurant_API\Restaurant_API.csproj", "{40728538-32E6-48C0-8EA2-6F30EE9BE06D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order_API", "Order_API\Order_API.csproj", "{6F35476F-35F0-4A1F-846B-2F25ED6FED25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order_API", "Order_API\Order_API.csproj", "{6F35476F-35F0-4A1F-846B-2F25ED6FED25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

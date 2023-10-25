@@ -1,5 +1,6 @@
 using Core.Services.CartSter;
 using Core.Services.MenuS;
+using Core.Services.Orderser;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IMenuService, MenuService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+
+builder.Services.AddSignalR();
 
 builder.Services.AddCors(options =>
 {
