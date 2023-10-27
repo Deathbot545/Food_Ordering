@@ -275,6 +275,11 @@ namespace Core.Services.OutletSer
             };
         }
 
+        public async Task<Outlet> GetOutletBySubdomain(string subdomain)
+        {
+            return await _context.Outlets.FirstOrDefaultAsync(o => o.Subdomain == subdomain);
+        }
+
 
     }
 

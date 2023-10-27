@@ -41,23 +41,23 @@ namespace Core.Services.CartSter
                     MenuCategoryId = menuItemDto.MenuCategoryId,
                     Image = Convert.FromBase64String(menuItemDto.Image)
                 };
-                await AddToCartAsync(menuItem, item.Qty, request.UserId, request.TableId); // Pass the TableId here
+                await AddToCartAsync(menuItem, item.Qty, request.UserId, request.TableId,request.OutletId); // Pass the TableId here
             }
         }
 
-        public async Task AddToCartAsync(MenuItem menuItem, int quantity, string userId = null, int tableId = 0) // Add tableId parameter here
+        public async Task AddToCartAsync(MenuItem menuItem, int quantity, string userId = null, int tableId = 0, int outletId=0) // Add tableId parameter here
         {
             if (string.IsNullOrEmpty(userId))
             {
-                await AddToCartAsGuestAsync(menuItem, quantity, tableId);
+                await AddToCartAsGuestAsync(menuItem, quantity, tableId,outletId);
             }
             else
             {
-                await AddToCartAsAuthenticatedUserAsync(menuItem, quantity, userId, tableId);
+                await AddToCartAsAuthenticatedUserAsync(menuItem, quantity, userId, tableId,outletId);
             }
         }
 
-        private async Task AddToCartAsGuestAsync(MenuItem menuItem, int quantity, int tableId)
+        private async Task AddToCartAsGuestAsync(MenuItem menuItem, int quantity, int tableId,int outletId)
         {
             var currentOrder = await _context.Orders
                 .Include(o => o.OrderDetails)
@@ -70,7 +70,8 @@ namespace Core.Services.CartSter
                 {
                     OrderTime = DateTime.UtcNow,
                     Status = OrderStatus.Pending,
-                    TableId = tableId // Save the TableId here
+                    TableId = tableId, // Save the TableId here
+                    OutletId = outletId
                 };
 
                 _context.Orders.Add(currentOrder);
@@ -88,7 +89,7 @@ namespace Core.Services.CartSter
         }
 
 
-        private async Task AddToCartAsAuthenticatedUserAsync(MenuItem menuItem, int quantity, string userId, int tableId)
+        private async Task AddToCartAsAuthenticatedUserAsync(MenuItem menuItem, int quantity, string userId, int tableId,int outlet)
         {
             var currentOrder = await _context.Orders
                 .Include(o => o.OrderDetails)
@@ -102,7 +103,8 @@ namespace Core.Services.CartSter
                     OrderTime = DateTime.UtcNow,
                     Customer = await _context.Users.FindAsync(userId),
                     Status = OrderStatus.Pending,
-                    TableId = tableId // Save the TableId here
+                    TableId = tableId, // Save the TableId here
+                    OutletId= outlet
                 };
 
                 _context.Orders.Add(currentOrder);

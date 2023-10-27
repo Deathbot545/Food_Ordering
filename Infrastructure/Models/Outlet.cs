@@ -44,5 +44,7 @@ namespace Infrastructure.Models
         public byte[] RestaurantImage { get; set; }
         public ICollection<Table> Tables { get; set; } // one-to-many with Table
             public int MenuId { get; set; }  // Foreign key for Menu
+
+        public string Subdomain { get; set; }
     }
 }

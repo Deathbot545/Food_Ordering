@@ -207,6 +207,13 @@
             return;
         }
 
+        let outletIdInt = parseInt('@ViewBag.OutletId');
+        if (isNaN(outletIdInt)) {
+            console.error("Invalid outlet ID format: " + '@ViewBag.OutletId');
+            return;
+        }
+
+
         // Convert menu item ids to integers
         cart.forEach(item => {
             let itemIdInt = parseInt(item.id);
@@ -221,9 +228,9 @@
         console.log("Sending data:", {
             menuItems: cart,
             tableId: tableIdInt,
-            userId: userId
+            userId: userId,
+            outletId: outletIdInt // Added this
         });
-
 
         $.ajax({
             url: 'https://localhost:7268/api/OrderApi/AddToCart',
@@ -231,7 +238,8 @@
             data: JSON.stringify({
                 menuItems: cart,
                 tableId: tableIdInt,
-                userId: userId
+                userId: userId,
+                outletId: outletIdInt // Added this
             }),
 
             contentType: 'application/json',

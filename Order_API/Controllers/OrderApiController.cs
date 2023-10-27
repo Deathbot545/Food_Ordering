@@ -55,6 +55,19 @@ namespace Order_API.Controllers
             return Ok();
         }
 
+        [HttpGet("GetOrdersForOutlet/{outletId}")]
+        public async Task<IActionResult> GetOrdersForOutlet(int outletId)
+        {
+            try
+            {
+                var ordersDTO = _orderService.GetOrdersByOutletId(outletId);
+                return Ok(ordersDTO);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
 
     }
 }

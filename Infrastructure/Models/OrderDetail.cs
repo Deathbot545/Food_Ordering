@@ -15,6 +15,4 @@ namespace Infrastructure.Models
         public virtual MenuItem MenuItem { get; set; }
         public int Quantity { get; set; }
     }
-
-
 }

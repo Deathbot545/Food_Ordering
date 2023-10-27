@@ -10,6 +10,7 @@ namespace Core.DTO
     {
         public List<CartItem> MenuItems { get; set; }
         public int TableId { get; set; }
+        public int OutletId { get; set; }
         public string? UserId { get; set; }
 
     }

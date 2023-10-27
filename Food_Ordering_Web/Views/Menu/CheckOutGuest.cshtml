@@ -202,6 +202,11 @@ span.float-end {
             console.error("Invalid table ID format: " + '@ViewBag.TableId');
             return;
         }
+        let outletIdInt = parseInt('@ViewBag.OutletId');
+        if (isNaN(outletIdInt)) {
+            console.error("Invalid outlet ID format: " + '@ViewBag.OutletId');
+            return;
+        }
 
         // Convert menu item ids to integers
         cart.forEach(item => {
@@ -216,7 +221,8 @@ span.float-end {
         // Logging the data you're about to send with the AJAX request:
         console.log("Sending data:", {
             menuItems: cart,
-            tableId: tableIdInt
+            tableId: tableIdInt,
+            outletId: outletIdInt // Added this
         });
 
         $.ajax({
@@ -224,8 +230,8 @@ span.float-end {
             type: 'POST',
             data: JSON.stringify({
                 menuItems: cart,
-                tableId: tableIdInt
-
+                tableId: tableIdInt,
+                outletId: outletIdInt // Added this
             }),
             contentType: 'application/json',
             success: function (response) {

@@ -10,7 +10,7 @@ namespace Core.Services.CartSter
 {
     public interface ICartService
     {
-        Task AddToCartAsync(MenuItem menuItem, int quantity, string userId = null, int tableId = 0);
+        Task AddToCartAsync(MenuItem menuItem, int quantity, string userId = null, int tableId = 0, int outletId = 0);
         Task ProcessCartRequestAsync(CartRequest request);
         // Add other cart related methods if needed...
     }

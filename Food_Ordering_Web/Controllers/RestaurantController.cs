@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Data;
 using System.Net;
@@ -106,7 +107,10 @@ namespace Food_Ordering_Web.Controllers
                     outlet.RestaurantImage = ms.ToArray();
                 }
             }
-          
+
+            // Generate the subdomain name in the controller
+            outlet.Subdomain = GenerateSubdomain(outlet.InternalOutletName);
+
             // Use _httpClient that has BaseAddress set
             var content = new StringContent(JsonConvert.SerializeObject(outlet), Encoding.UTF8, "application/json");
             var apiEndpoint = $"api/OutletApi/RegisterOutlet?currentUserId={currentUserId}";
@@ -145,6 +149,13 @@ namespace Food_Ordering_Web.Controllers
         {
             public bool Success { get; set; }
             public Outlet Outlet { get; set; }
+        }
+        private string GenerateSubdomain(string internalOutletName)
+        {
+            // This method will generate a sanitized subdomain based on the InternalOutletName.
+            // For now, this just converts the name to lowercase and removes spaces. 
+            // Depending on your needs, you might add more complex sanitizing here.
+            return internalOutletName.ToLower().Replace(" ", "");
         }
 
     }

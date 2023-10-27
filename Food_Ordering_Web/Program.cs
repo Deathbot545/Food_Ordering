@@ -1,13 +1,5 @@
-using System;
-using System.Net.Http;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Food_Ordering_Web.Handlers;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.CookiePolicy;
 using Infrastructure.Models;
@@ -17,6 +9,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
+using Infrastructure.Constraints;
+using Core.Services.MenuS;
+using Core.Services.OutletSer;
+using Core.Services.Orderser;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -25,6 +21,8 @@ var configuration = builder.Configuration;
 builder.Services.AddHttpClient("namedClient", c => { c.BaseAddress = new Uri(configuration["ApiBaseUrl"]); });
 
 
+builder.Services.AddScoped<IOutletService, OutletService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
@@ -52,6 +50,11 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
+//SubDomain Stuff
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.ConstraintMap.Add("subdomain", typeof(SubdomainRouteConstraint));
+});
 
 // Add controllers and Razor pages
 builder.Services.AddControllers();
@@ -92,9 +95,22 @@ app.UseRouting();
 app.UseAuthentication();  // Add this line
 app.UseAuthorization();   // Add this line
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+    name: "SubdomainRoute",
+    pattern: "{controller=Home}/{action=SubdomainRedirection}/{id?}",
+    constraints: new { subdomain = new SubdomainRouteConstraint() });
+
+
+    // ... your other routes
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+
+    endpoints.MapRazorPages();
+});
+
 app.MapRazorPages();
 
 app.Run();

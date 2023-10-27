@@ -16,6 +16,7 @@ namespace Food_Ordering_Web.Controllers
             ViewBag.TableId = tableId;
 
             TempData["tableId"] = tableId;
+            TempData["outletId"] = outletId;
 
             if (User.Identity.IsAuthenticated)
             {
@@ -39,6 +40,7 @@ namespace Food_Ordering_Web.Controllers
             TempData["customerFacingName"] = customerFacingName;
 
             TempData.Keep("tableId");
+            TempData.Keep("outletId");
 
             return Json(new { success = true, redirectUrl = Url.Action("FoodDetail") });
         }
@@ -51,6 +53,7 @@ namespace Food_Ordering_Web.Controllers
             ViewBag.CustomerFacingName = TempData["customerFacingName"];
 
             TempData.Keep("tableId");
+            TempData.Keep("outletId");
             if (User.Identity.IsAuthenticated)
             {
                 ViewBag.UserId = User.Identity.Name;
@@ -74,6 +77,7 @@ namespace Food_Ordering_Web.Controllers
             }
 
             ViewBag.TableId = TempData["tableId"];
+            ViewBag.OutletId = TempData["outletId"];
 
             var viewPath = User.Identity.IsAuthenticated
                 ? "~/Views/Menu/AuthCheckOut.cshtml"
