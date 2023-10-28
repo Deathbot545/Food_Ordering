@@ -34,23 +34,36 @@ namespace Order_API.Controllers
         {
             try
             {
-                await _cartService.ProcessCartRequestAsync(request);
-                return Ok(new { message = "Items added to cart successfully." });
+                int orderId = await _cartService.ProcessCartRequestAsync(request);
+                await _hubContext.Clients.All.SendAsync("NewOrderPlaced", request);
+                return Ok(new { orderId = orderId, message = "Items added to cart successfully." });
             }
             catch (Exception ex)
             {
                 return BadRequest(new { message = ex.Message });
             }
         }
-
         [HttpPost]
-        public async Task<IActionResult> UpdateOrderStatus(Order order)
+        [Route("UpdateOrderStatus")]
+        public async Task<IActionResult> UpdateOrderStatus(UpdateOrderStatusDto updateOrderDto)
         {
-            // Use your service to update the order status in the database.
-            await _orderService.UpdateOrderStatusAsync(order);
+            // Validate the DTO
+            if (updateOrderDto == null || updateOrderDto.OrderId <= 0)
+            {
+                return BadRequest("Invalid request data.");
+            }
 
-            // Once the order is updated in the database, notify all clients.
-            await _hubContext.Clients.All.SendAsync("ReceiveOrderUpdate", order);
+            // Use your service to update the order status in the database.
+            await _orderService.UpdateOrderStatusAsync(updateOrderDto.OrderId, updateOrderDto.Status);
+
+            // Fetch the connection ID for the order ID
+            var connectionId = OrderStatusHub.GetConnectionIdForOrder(updateOrderDto.OrderId);
+
+            // If a connection ID is found for the order ID, notify that specific client.
+            if (!string.IsNullOrEmpty(connectionId))
+            {
+                await _hubContext.Clients.Client(connectionId).SendAsync("ReceiveOrderUpdate", updateOrderDto);
+            }
 
             return Ok();
         }

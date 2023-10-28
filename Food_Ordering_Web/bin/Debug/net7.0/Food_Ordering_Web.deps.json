@@ -20,6 +20,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "7.0.11",
           "Microsoft.VisualStudio.Services.Notifications.WebApi": "16.205.1",
           "Newtonsoft.Json": "13.0.3",
+          "Order_API": "1.0.0",
           "System.IdentityModel.Tokens.Jwt": "7.0.2"
         },
         "runtime": {
@@ -136,6 +137,15 @@
             "assemblyVersion": "7.0.5.0",
             "fileVersion": "7.0.523.17410"
           }
+        }
+      },
+      "Microsoft.AspNetCore.Cors/2.2.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Options": "7.0.1"
         }
       },
       "Microsoft.AspNetCore.Cryptography.Internal/7.0.5": {
@@ -1707,6 +1717,17 @@
         "runtime": {
           "Infrastructure.dll": {}
         }
+      },
+      "Order_API/1.0.0": {
+        "dependencies": {
+          "Core": "1.0.0",
+          "Microsoft.AspNetCore.Cors": "2.2.0",
+          "Microsoft.AspNetCore.OpenApi": "7.0.5",
+          "Swashbuckle.AspNetCore": "6.4.0"
+        },
+        "runtime": {
+          "Order_API.dll": {}
+        }
       }
     }
   },
@@ -1778,6 +1799,13 @@
       "sha512": "sha512-mpDo9uDsl2Ere26+Cl2vl3eaqirSD6QbzZltW4jP+jay9mZfi+P5hKQ9Sg+TwiotmpyBpRyGVDxVmEkoE+t6jA==",
       "path": "microsoft.aspnetcore.authentication.openidconnect/7.0.5",
       "hashPath": "microsoft.aspnetcore.authentication.openidconnect.7.0.5.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Cors/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LFlTM3ThS3ZCILuKnjy8HyK9/IlDh3opogdbCVx6tMGyDzTQBgMPXLjGDLtMk5QmLDCcP3l1TO3z/+1viA8GUg==",
+      "path": "microsoft.aspnetcore.cors/2.2.0",
+      "hashPath": "microsoft.aspnetcore.cors.2.2.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/7.0.5": {
       "type": "package",
@@ -2931,6 +2959,11 @@
       "sha512": ""
     },
     "Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Order_API/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

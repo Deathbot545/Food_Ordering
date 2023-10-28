@@ -4,6 +4,8 @@ using Core.Services.Orderser;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Order_API.Hubs;
+using System.Text.RegularExpressions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,17 +20,24 @@ builder.Services.AddScoped<IMenuService, MenuService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.AddSignalR();
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowMyOrigins",
-        builder =>
-        {
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-        });
+    builder =>
+    {
+        builder
+               .SetIsOriginAllowed(origin => IsOriginAllowed(origin))
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowCredentials();
+    });
 });
+
+bool IsOriginAllowed(string origin)
+{
+    var allowedRegex = new Regex(@"^(https:\/\/)([\w-]+\.)*localhost:7257$");
+    return allowedRegex.IsMatch(origin);
+}
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -48,6 +57,8 @@ app.UseCors("AllowMyOrigins");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.MapHub<OrderStatusHub>("/orderStatusHub");
 
 app.MapControllers();
 

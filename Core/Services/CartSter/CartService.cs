@@ -22,8 +22,10 @@ namespace Core.Services.CartSter
             _menuService = menuService;
         }
 
-        public async Task ProcessCartRequestAsync(CartRequest request)
+        public async Task<int> ProcessCartRequestAsync(CartRequest request)
         {
+            int? orderId = null;
+
             foreach (var item in request.MenuItems)
             {
                 var menuItemDto = await _menuService.GetMenuItemByIdAsync(item.Id);
@@ -41,23 +43,32 @@ namespace Core.Services.CartSter
                     MenuCategoryId = menuItemDto.MenuCategoryId,
                     Image = Convert.FromBase64String(menuItemDto.Image)
                 };
-                await AddToCartAsync(menuItem, item.Qty, request.UserId, request.TableId,request.OutletId); // Pass the TableId here
+                orderId = await AddToCartAsync(menuItem, item.Qty, request.UserId, request.TableId, request.OutletId);
             }
+
+            if (!orderId.HasValue)
+            {
+                throw new Exception("No items were processed for the cart.");
+            }
+
+            return orderId.Value;
         }
 
-        public async Task AddToCartAsync(MenuItem menuItem, int quantity, string userId = null, int tableId = 0, int outletId=0) // Add tableId parameter here
+
+        public async Task<int> AddToCartAsync(MenuItem menuItem, int quantity, string userId = null, int tableId = 0, int outletId = 0)
         {
             if (string.IsNullOrEmpty(userId))
             {
-                await AddToCartAsGuestAsync(menuItem, quantity, tableId,outletId);
+                return await AddToCartAsGuestAsync(menuItem, quantity, tableId, outletId);
             }
             else
             {
-                await AddToCartAsAuthenticatedUserAsync(menuItem, quantity, userId, tableId,outletId);
+                return await AddToCartAsAuthenticatedUserAsync(menuItem, quantity, userId, tableId, outletId);
             }
         }
 
-        private async Task AddToCartAsGuestAsync(MenuItem menuItem, int quantity, int tableId,int outletId)
+
+        private async Task<int> AddToCartAsGuestAsync(MenuItem menuItem, int quantity, int tableId, int outletId)
         {
             var currentOrder = await _context.Orders
                 .Include(o => o.OrderDetails)
@@ -86,10 +97,11 @@ namespace Core.Services.CartSter
 
             _context.OrderDetails.Add(orderDetail);
             await _context.SaveChangesAsync();
+            return currentOrder.Id;
         }
 
 
-        private async Task AddToCartAsAuthenticatedUserAsync(MenuItem menuItem, int quantity, string userId, int tableId,int outlet)
+        private async Task<int> AddToCartAsAuthenticatedUserAsync(MenuItem menuItem, int quantity, string userId, int tableId, int outletId)
         {
             var currentOrder = await _context.Orders
                 .Include(o => o.OrderDetails)
@@ -104,7 +116,7 @@ namespace Core.Services.CartSter
                     Customer = await _context.Users.FindAsync(userId),
                     Status = OrderStatus.Pending,
                     TableId = tableId, // Save the TableId here
-                    OutletId= outlet
+                    OutletId= outletId
                 };
 
                 _context.Orders.Add(currentOrder);
@@ -119,6 +131,7 @@ namespace Core.Services.CartSter
 
             _context.OrderDetails.Add(orderDetail);
             await _context.SaveChangesAsync();
+            return currentOrder.Id;
         }
 
     }

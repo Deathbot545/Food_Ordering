@@ -70,6 +70,8 @@
             transform: scale(1.1);
         }
 </style>
+<div id="orderStatus">Your order status will appear here.</div>
+
 <div class="container my-5">
     <h1>Authenticated</h1>
     <div class="row">
@@ -244,10 +246,15 @@
 
             contentType: 'application/json',
             success: function (response) {
-                // Clear the cart from local storage after a successful checkout
                 localStorage.removeItem('cart');
-                // Set order status in localStorage
-                localStorage.setItem('orderStatus', 'preparing');
+                localStorage.setItem('currentOrder', JSON.stringify({
+                    orderId: response.orderId,
+                    status: "Pending"
+                }));
+                document.getElementById("orderStatus").innerText = "Your order is being prepared.";
+
+                // Logging the returned orderId to the console
+                console.log("Received Order ID:", response.orderId);
             },
             error: function (error) {
                 if (error && error.responseJSON && error.responseJSON.message) {

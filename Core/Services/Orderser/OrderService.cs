@@ -19,21 +19,22 @@ namespace Core.Services.Orderser
             _context = context;
         }
 
-        public async Task UpdateOrderStatusAsync(Order updatedOrder)
+        public async Task UpdateOrderStatusAsync(int orderId, OrderStatus status)
         {
             // Retrieve the existing order from the database
-            var existingOrder = await _context.Orders.FindAsync(updatedOrder.Id);
+            var existingOrder = await _context.Orders.FindAsync(orderId);
             if (existingOrder == null)
             {
                 throw new Exception("Order not found.");
             }
 
             // Update the status
-            existingOrder.Status = updatedOrder.Status;
+            existingOrder.Status = status;
 
             // Save changes to the database
             await _context.SaveChangesAsync();
         }
+
         public IEnumerable<OrderDTO> GetOrdersByOutletId(int outletId)
         {
             var orders = _context.Orders

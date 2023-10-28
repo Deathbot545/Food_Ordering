@@ -10,7 +10,7 @@ namespace Core.Services.Orderser
 {
     public interface IOrderService
     {
-        Task UpdateOrderStatusAsync(Order updatedOrder);
+        Task UpdateOrderStatusAsync(int orderId, OrderStatus status);
         IEnumerable<OrderDTO> GetOrdersByOutletId(int outletId);
         // Add other order-related methods as needed
     }

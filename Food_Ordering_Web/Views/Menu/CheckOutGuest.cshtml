@@ -70,6 +70,8 @@ span.float-end {
             transform: scale(1.1);
         }
 </style>
+<div id="orderStatus">Your order status will appear here.</div>
+
 <div class="container my-5">
     <div class="row">
         <!-- Delivery Estimate Section -->
@@ -240,7 +242,12 @@ span.float-end {
                     orderId: response.orderId,
                     status: "Pending"
                 }));
+                document.getElementById("orderStatus").innerText = "Your order is being prepared.";
+
+                // Logging the returned orderId to the console
+                console.log("Received Order ID:", response.orderId);
             },
+
             error: function (error) {
                 if (error && error.responseJSON && error.responseJSON.message) {
                     console.error(error.responseJSON.message);

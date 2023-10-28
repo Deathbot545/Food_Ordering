@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pvAfLNWemE3AcWl/wbH0M+eTXuar86glOhIwnE9TEr8=",
+  "Hash": "vep/tG6iAgv0owulY7m9wvkL7JkcR8kxr8TwEFSEyzs=",
   "Source": "Food_Ordering_Web",
   "BasePath": "_content/Food_Ordering_Web",
   "Mode": "Default",
@@ -10,6 +10,17 @@
       "Identity": "D:\\New folder\\Food_Ordering\\Food_Ordering\\Food_Ordering\\Food_Ordering_API.csproj",
       "Version": 2,
       "Source": "Food_Ordering_API",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    },
+    {
+      "Identity": "D:\\New folder\\Food_Ordering\\Food_Ordering\\Order_API\\Order_API.csproj",
+      "Version": 2,
+      "Source": "Order_API",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
       "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
       "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",

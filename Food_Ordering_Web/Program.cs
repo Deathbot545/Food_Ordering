@@ -13,12 +13,15 @@ using Infrastructure.Constraints;
 using Core.Services.MenuS;
 using Core.Services.OutletSer;
 using Core.Services.Orderser;
+using Order_API.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
 // Register the HttpClient and set its base address
 builder.Services.AddHttpClient("namedClient", c => { c.BaseAddress = new Uri(configuration["ApiBaseUrl"]); });
+
+builder.Services.AddSignalR();
 
 
 builder.Services.AddScoped<IOutletService, OutletService>();
@@ -87,6 +90,7 @@ app.UseCookiePolicy(new CookiePolicyOptions
     Secure = CookieSecurePolicy.Always
 });
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -97,6 +101,8 @@ app.UseAuthorization();   // Add this line
 
 app.UseEndpoints(endpoints =>
 {
+    endpoints.MapHub<OrderStatusHub>("/orderStatusHub"); // Map your hub here
+
     endpoints.MapControllerRoute(
     name: "SubdomainRoute",
     pattern: "{controller=Home}/{action=SubdomainRedirection}/{id?}",
