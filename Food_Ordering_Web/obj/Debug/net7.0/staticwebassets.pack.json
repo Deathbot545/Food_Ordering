@@ -5,6 +5,18 @@
       "PackagePath": "staticwebassets/Food_Ordering_Web.bundle.scp.css"
     },
     {
+      "Id": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/wwwroot/.DS_Store",
+      "PackagePath": "staticwebassets/.DS_Store"
+    },
+    {
+      "Id": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/wwwroot/Images/.DS_Store",
+      "PackagePath": "staticwebassets/Images/.DS_Store"
+    },
+    {
+      "Id": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/wwwroot/Images/background.jpg",
+      "PackagePath": "staticwebassets/Images/background.jpg"
+    },
+    {
       "Id": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/wwwroot/Images/jason-leung-UMncYEfO9-U-unsplash.jpg",
       "PackagePath": "staticwebassets/Images/jason-leung-UMncYEfO9-U-unsplash.jpg"
     },

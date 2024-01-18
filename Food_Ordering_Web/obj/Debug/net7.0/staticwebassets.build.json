@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "7r/5UCGyAWY0yYQGc6nwHf5tNM1QkkFugmYNc67IWb4=",
+  "Hash": "FRoPjbUNxSQcFlzePYIZr3rkBC+sU17qM0FDr8aU5/s=",
   "Source": "Food_Ordering_Web",
   "BasePath": "_content/Food_Ordering_Web",
   "Mode": "Default",
@@ -1094,6 +1094,23 @@
       "OriginalItemSpec": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/scopedcss/projectbundle/Food_Ordering_Web.bundle.scp.css"
     },
     {
+      "Identity": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/wwwroot/.DS_Store",
+      "SourceId": "Food_Ordering_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/wwwroot/",
+      "BasePath": "_content/Food_Ordering_Web",
+      "RelativePath": ".DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/.DS_Store"
+    },
+    {
       "Identity": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/wwwroot/css/bootstrap-grid.css",
       "SourceId": "Food_Ordering_Web",
       "SourceType": "Discovered",
@@ -1704,6 +1721,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/wwwroot/Images/.DS_Store",
+      "SourceId": "Food_Ordering_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/wwwroot/",
+      "BasePath": "_content/Food_Ordering_Web",
+      "RelativePath": "Images/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/.DS_Store"
+    },
+    {
+      "Identity": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/wwwroot/Images/background.jpg",
+      "SourceId": "Food_Ordering_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/wwwroot/",
+      "BasePath": "_content/Food_Ordering_Web",
+      "RelativePath": "Images/background.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/background.jpg"
     },
     {
       "Identity": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/wwwroot/Images/jason-leung-UMncYEfO9-U-unsplash.jpg",
