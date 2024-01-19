@@ -1,126 +1,252 @@
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\appsettings.Development.json
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\appsettings.json
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Food_Ordering_Web.staticwebassets.runtime.json
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Food_Ordering_Web.exe
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Food_Ordering_Web.deps.json
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Food_Ordering_Web.runtimeconfig.json
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Food_Ordering_Web.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Food_Ordering_Web.pdb
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Azure.Core.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Azure.Identity.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Humanizer.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.UI.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.Extensions.FileProviders.Embedded.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.Identity.Client.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Mono.TextTemplating.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\System.CodeDom.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\System.Drawing.Common.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\System.Memory.Data.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\System.Runtime.Caching.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\System.Security.Permissions.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\System.Windows.Extensions.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\Food_Ordering_Web.csproj.AssemblyReference.cache
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\Food_Ordering_Web.GeneratedMSBuildEditorConfig.editorconfig
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\Food_Ordering_Web.AssemblyInfoInputs.cache
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\Food_Ordering_Web.AssemblyInfo.cs
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\Food_Ordering_Web.csproj.CoreCompileInputs.cache
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\Food_Ordering_Web.MvcApplicationPartsAssemblyInfo.cs
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\Food_Ordering_Web.MvcApplicationPartsAssemblyInfo.cache
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\Food_Ordering_Web.RazorAssemblyInfo.cache
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\Food_Ordering_Web.RazorAssemblyInfo.cs
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\staticwebassets\msbuild.Food_Ordering_Web.Microsoft.AspNetCore.StaticWebAssets.props
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\staticwebassets\msbuild.build.Food_Ordering_Web.props
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.Food_Ordering_Web.props
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.Food_Ordering_Web.props
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\staticwebassets.pack.json
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\staticwebassets.build.json
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\staticwebassets.development.json
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\scopedcss\bundle\Food_Ordering_Web.styles.css
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\scopedcss\projectbundle\Food_Ordering_Web.bundle.scp.css
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\Food_Ordering_Web.csproj.CopyComplete
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\Food_Ordering_Web.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\refint\Food_Ordering_Web.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\Food_Ordering_Web.pdb
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\Food_Ordering_Web.genruntimeconfig.cache
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\ref\Food_Ordering_Web.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Npgsql.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Infrastructure.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Infrastructure.pdb
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Google.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Core.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Core.pdb
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Food_Ordering_API.deps.json
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Food_Ordering_API.runtimeconfig.json
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Food_Ordering_API.exe
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Azure.Security.KeyVault.Certificates.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Azure.Security.KeyVault.Secrets.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.Identity.Web.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.OpenApi.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Food_Ordering_API.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Food_Ordering_API.pdb
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Newtonsoft.Json.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\zxing.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\System.Net.Http.Formatting.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.TeamFoundation.Common.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.VisualStudio.Services.Common.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.VisualStudio.Services.WebApi.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Microsoft.VisualStudio.Services.Notifications.WebApi.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\System.Data.SqlClient.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\System.Xml.XPath.XmlDocument.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\win-arm64\native\sni.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\win-x64\native\sni.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\win-x86\native\sni.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\unix\lib\netstandard2.0\System.Data.SqlClient.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Data.SqlClient.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Order_API.deps.json
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Order_API.runtimeconfig.json
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Order_API.exe
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Order_API.dll
-D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Order_API.pdb
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/appsettings.Development.json
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/appsettings.json
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_Web.staticwebassets.runtime.json
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_Web.exe
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_Web.deps.json
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_Web.runtimeconfig.json
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_Web.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_Web.pdb
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Azure.Core.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Azure.Identity.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Humanizer.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Identity.UI.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Bcl.AsyncInterfaces.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Data.SqlClient.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Design.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Relational.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.SqlServer.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Extensions.DependencyModel.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Extensions.FileProviders.Embedded.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Extensions.Identity.Core.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Extensions.Identity.Stores.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Identity.Client.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Identity.Client.Extensions.Msal.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.IdentityModel.Abstractions.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.IdentityModel.JsonWebTokens.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.SqlServer.Server.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Win32.SystemEvents.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Mono.TextTemplating.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.CodeDom.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Configuration.ConfigurationManager.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Drawing.Common.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Memory.Data.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Runtime.Caching.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Security.Cryptography.ProtectedData.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Security.Permissions.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Windows.Extensions.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/unix/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win/lib/netstandard2.0/System.Runtime.Caching.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.csproj.AssemblyReference.cache
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.GeneratedMSBuildEditorConfig.editorconfig
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.AssemblyInfoInputs.cache
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.AssemblyInfo.cs
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.csproj.CoreCompileInputs.cache
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.MvcApplicationPartsAssemblyInfo.cs
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.MvcApplicationPartsAssemblyInfo.cache
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.RazorAssemblyInfo.cache
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.RazorAssemblyInfo.cs
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/staticwebassets/msbuild.Food_Ordering_Web.Microsoft.AspNetCore.StaticWebAssets.props
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/staticwebassets/msbuild.build.Food_Ordering_Web.props
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.Food_Ordering_Web.props
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.Food_Ordering_Web.props
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/staticwebassets.pack.json
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/staticwebassets.build.json
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/staticwebassets.development.json
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/scopedcss/bundle/Food_Ordering_Web.styles.css
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/scopedcss/projectbundle/Food_Ordering_Web.bundle.scp.css
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.csproj.CopyComplete
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/refint/Food_Ordering_Web.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.pdb
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.genruntimeconfig.cache
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/ref/Food_Ordering_Web.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Npgsql.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Infrastructure.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Infrastructure.pdb
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.Google.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Core.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Core.pdb
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_API.deps.json
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_API.runtimeconfig.json
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_API.exe
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Azure.Security.KeyVault.Certificates.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Azure.Security.KeyVault.Secrets.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.OpenApi.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Identity.Web.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.OpenApi.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Swashbuckle.AspNetCore.Swagger.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_API.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_API.pdb
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Newtonsoft.Json.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/zxing.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win/lib/net7.0/Microsoft.Win32.SystemEvents.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Drawing.Common.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Net.Http.Formatting.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.TeamFoundation.Common.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.VisualStudio.Services.Common.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.VisualStudio.Services.WebApi.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.VisualStudio.Services.Notifications.WebApi.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Newtonsoft.Json.Bson.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Data.SqlClient.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Xml.XPath.XmlDocument.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win-arm64/native/sni.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win-x64/native/sni.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win-x86/native/sni.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/unix/lib/netstandard2.0/System.Data.SqlClient.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win/lib/netstandard2.0/System.Data.SqlClient.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Order_API.deps.json
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Order_API.runtimeconfig.json
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Order_API.exe
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Order_API.dll
+D:/New folder/Food_Ordering/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Order_API.pdb
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/appsettings.Development.json
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/appsettings.json
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_API.deps.json
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_API.runtimeconfig.json
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_API
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Order_API.deps.json
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Order_API.runtimeconfig.json
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Order_API
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_Web.staticwebassets.runtime.json
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_Web
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_Web.deps.json
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_Web.runtimeconfig.json
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_Web.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_Web.pdb
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Azure.Core.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Azure.Identity.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Azure.Security.KeyVault.Certificates.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Azure.Security.KeyVault.Secrets.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Humanizer.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Net.Http.Formatting.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.Google.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.Identity.UI.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.AspNetCore.OpenApi.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Bcl.AsyncInterfaces.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Data.SqlClient.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Design.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Relational.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.SqlServer.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Extensions.DependencyModel.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Extensions.FileProviders.Embedded.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Extensions.Identity.Core.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Extensions.Identity.Stores.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Identity.Client.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Identity.Client.Extensions.Msal.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Identity.Web.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.OpenApi.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.SqlServer.Server.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.TeamFoundation.Common.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.VisualStudio.Services.Common.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.VisualStudio.Services.WebApi.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.VisualStudio.Services.Notifications.WebApi.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Microsoft.Win32.SystemEvents.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Mono.TextTemplating.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Newtonsoft.Json.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Newtonsoft.Json.Bson.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Npgsql.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.CodeDom.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Configuration.ConfigurationManager.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Data.SqlClient.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Drawing.Common.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Memory.Data.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Runtime.Caching.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Security.Cryptography.ProtectedData.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Security.Permissions.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Windows.Extensions.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/System.Xml.XPath.XmlDocument.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/zxing.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/unix/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win/lib/net7.0/Microsoft.Win32.SystemEvents.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win-arm64/native/sni.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win-x64/native/sni.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win-x86/native/sni.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/unix/lib/netstandard2.0/System.Data.SqlClient.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win/lib/netstandard2.0/System.Data.SqlClient.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Drawing.Common.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win/lib/netstandard2.0/System.Runtime.Caching.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Core.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_API.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Infrastructure.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Order_API.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Core.pdb
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Food_Ordering_API.pdb
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Infrastructure.pdb
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/bin/Debug/net7.0/Order_API.pdb
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.csproj.AssemblyReference.cache
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.GeneratedMSBuildEditorConfig.editorconfig
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.AssemblyInfoInputs.cache
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.AssemblyInfo.cs
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.csproj.CoreCompileInputs.cache
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.MvcApplicationPartsAssemblyInfo.cs
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.MvcApplicationPartsAssemblyInfo.cache
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.RazorAssemblyInfo.cache
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.RazorAssemblyInfo.cs
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/staticwebassets/msbuild.Food_Ordering_Web.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/staticwebassets/msbuild.build.Food_Ordering_Web.props
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.Food_Ordering_Web.props
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.Food_Ordering_Web.props
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/staticwebassets.pack.json
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/staticwebassets.build.json
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/staticwebassets.development.json
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/scopedcss/bundle/Food_Ordering_Web.styles.css
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/scopedcss/projectbundle/Food_Ordering_Web.bundle.scp.css
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.csproj.CopyComplete
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/refint/Food_Ordering_Web.dll
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.pdb
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/Food_Ordering_Web.genruntimeconfig.cache
+/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/obj/Debug/net7.0/ref/Food_Ordering_Web.dll

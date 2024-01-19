@@ -101,19 +101,16 @@ namespace Food_Ordering_API.Controllers
                     return Content("An error occurred.");
                 }
             }
-            else
-            {
-                var error = await response.Content.ReadAsStringAsync();
-                var errorObject = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(error);
+           else
+{
+    var error = await response.Content.ReadAsStringAsync();
+    
+    // Since the content is plain text, we can directly use the error message
+    TempData["ErrorMessage"] = error;
 
-                if (errorObject != null && errorObject.ContainsKey("message"))
-                {
-                    TempData["ErrorMessage"] = errorObject["message"];
-                }
+    return RedirectToAction("Register");
+}
 
-                return RedirectToAction("Register");
-                // Redirect to the specified action and controller
-            }
         }
 
         public IActionResult Login()

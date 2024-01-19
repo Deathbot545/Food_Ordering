@@ -22,21 +22,53 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <style>
+      <style>
         body {
-            margin-top: 60px; /* Add this line */
-            margin-bottom: 60px;
-        }</style>
+            margin-top: 60px;
+            margin-bottom: 0px;
+        }
+        /* Ensure the main content takes up the minimum space so the footer stays at the bottom */
+  
+      .footer {
+        background-color: #343a40; /* Dark background for contrast */
+        color: #fff; /* White text */
+        padding: 40px 0 0 0; /* Top padding 40px, Right 0, Bottom 0, Left 0 */
+    }
+   
+    .footer h5 {
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    .footer a {
+        color: #d1d1d1; /* Light grey text */
+        text-decoration: none;
+        margin-bottom: 10px;
+        display: block; /* Makes the entire area clickable */
+    }
+    .footer a:hover {
+        color: #f8f9fa; /* Slightly brighter on hover */
+    }
+    .footer .social-icons a {
+        font-size: 20px; /* Larger icons */
+        margin-right: 15px;
+    }
+    .footer .social-icons a:hover {
+        color: #007bff; /* Brand color on hover */
+    }
+    </style>
        
 </head>
 <body>
     <nav class="navbar bg-body-tertiary fixed-top">
+     
+      
+
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div id="orderStatus">Your order status will appear here.</div>
+            <div id="orderStatus"></div>
             <!-- Replacing the brand name with buttons -->
             <!-- ... (above part remains unchanged) -->
             <div class="ms-auto d-flex align-items-center">
@@ -128,6 +160,13 @@
             </div>
 
         </div>
+          <!-- Centered Logo and Name -->
+        <div class="mx-auto">
+            <a class="navbar-brand" href="#">
+                <img src="/Images/logo.jpeg" alt="Logo" style="height: 40px;"> <!-- Adjust the path and size as needed -->
+                <span class="ms-2">Restro</span>
+            </a>
+        </div>
     </nav>
 
     <div class="container">
@@ -136,7 +175,38 @@
         </main>
     </div>
 
-   
+   <footer class="footer text-center text-lg-start">
+    <div class="container">
+        <div class="row">
+            <!-- Social Media Links -->
+            <div class="col-md-4 footer-column">
+                <h5>Follow Us</h5>
+                <div class="social-icons">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <!-- Add more icons as needed -->
+                </div>
+            </div>
+            <!-- Quick Links -->
+            <div class="col-md-4 footer-column">
+                <h5>Quick Links</h5>
+                <a href="#">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+                <!-- Add more links as needed -->
+            </div>
+            <!-- About Us -->
+            <div class="col-md-4 footer-column">
+                <h5>About Restro</h5>
+                <p>Your brief introduction or mission statement here.</p>
+            </div>
+        </div>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2024 Restro. All rights reserved.
+    </div>
+</footer>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
