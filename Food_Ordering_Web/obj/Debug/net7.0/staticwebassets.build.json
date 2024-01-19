@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FRoPjbUNxSQcFlzePYIZr3rkBC+sU17qM0FDr8aU5/s=",
+  "Hash": "AH4xgqjSUEkVD1DPiGCdbG9uSFUVlK1+j94vo5Fi318=",
   "Source": "Food_Ordering_Web",
   "BasePath": "_content/Food_Ordering_Web",
   "Mode": "Default",
@@ -1772,6 +1772,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Images/jason-leung-UMncYEfO9-U-unsplash.jpg"
+    },
+    {
+      "Identity": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/wwwroot/Images/logo.jpeg",
+      "SourceId": "Food_Ordering_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/wwwroot/",
+      "BasePath": "_content/Food_Ordering_Web",
+      "RelativePath": "Images/logo.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/logo.jpeg"
     },
     {
       "Identity": "/Users/RYDERR/Documents/GitHub/Food_Ordering/Food_Ordering_Web/wwwroot/Images/omar-flores-lQT_bOWtysE-unsplash.jpg",
