@@ -21,7 +21,7 @@ namespace Core.Services.AccountService
 
         }
 
-        public async Task<bool> AddUserAsync(string username, string password, string role)
+        public async Task<(bool Success, IEnumerable<string> Errors)> AddUserAsync(string username, string password, string role)
         {
             if (!await _roleManager.RoleExistsAsync(role))
             {
@@ -44,9 +44,10 @@ namespace Core.Services.AccountService
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, role);
-                return true;
+                return (true, null);
             }
-            return false;
+
+            return (false, result.Errors.Select(e => e.Description));
         }
 
 

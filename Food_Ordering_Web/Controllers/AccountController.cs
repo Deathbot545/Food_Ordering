@@ -40,6 +40,7 @@ namespace Food_Ordering_API.Controllers
             _apiBaseUrl = $"{configuration.GetValue<string>("ApiBaseUrl")}api/AccountApi";  // Modify it here
             _logger = logger;
         }
+
         [HttpGet]
         public IActionResult SpecialLogin(int outletId, int tableId)
         {
@@ -101,15 +102,22 @@ namespace Food_Ordering_API.Controllers
                     return Content("An error occurred.");
                 }
             }
-           else
-{
-    var error = await response.Content.ReadAsStringAsync();
-    
-    // Since the content is plain text, we can directly use the error message
-    TempData["ErrorMessage"] = error;
+            else
+            {
+                var errorResponse = await response.Content.ReadAsStringAsync();
+                var errorResult = System.Text.Json.JsonSerializer.Deserialize<ErrorResponse>(errorResponse);
+                if (errorResult != null && errorResult.Errors != null)
+                {
+                    foreach (var error in errorResult.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error);
+                    }
+                }
+                // Return the view directly with the model errors
+                return View("Signup"); // Assuming "Register" is the name of your view
+            }
 
-    return RedirectToAction("Register");
-}
+
 
         }
 
@@ -127,7 +135,7 @@ namespace Food_Ordering_API.Controllers
         {
             var loginDto = new LoginDto
             {
-                UsernameOrEmail = model.UserName,
+                UsernameOrEmail = model.UserName, // Ensure this is the user's email.
                 Password = model.Password
             };
 
@@ -150,6 +158,7 @@ namespace Food_Ordering_API.Controllers
                         SameSite = SameSiteMode.Strict
                     });
 
+                    // Pass model.UserName as the email to HandleLogin.
                     return await HandleLogin(model.UserName, responseObject.Token, responseObject.UserId, outletId, tableId);
                 }
                 else
@@ -160,7 +169,6 @@ namespace Food_Ordering_API.Controllers
             }
             else
             {
-                // Parse the error message from API
                 var responseContent = await httpResponse.Content.ReadAsStringAsync();
                 var errorResponse = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(responseContent);
 
@@ -176,6 +184,7 @@ namespace Food_Ordering_API.Controllers
 
             return View(model);
         }
+
 
 
         public class LoginResponse
@@ -339,7 +348,7 @@ namespace Food_Ordering_API.Controllers
             }
 
         }
-        public async Task<IActionResult> HandleLogin(string email, string token, string userId, int? outletId = null, int? tableId = null)
+        public async Task<IActionResult> HandleLogin(string emailOrUsername, string token, string userId, int? outletId = null, int? tableId = null)
         {
             // Decode JWT to get role
             var handler = new JwtSecurityTokenHandler();
@@ -352,15 +361,23 @@ namespace Food_Ordering_API.Controllers
             {
                 var role = roleClaim.Value;
 
-                // Retrieve the ApplicationUser object for the current user.
-                var user = await _userManager.FindByNameAsync(email);
+                // Try to retrieve the ApplicationUser object by email
+                ApplicationUser user = null;
+                if (emailOrUsername.Contains("@"))
+                {
+                    user = await _userManager.FindByEmailAsync(emailOrUsername);
+                }
+                else
+                {
+                    user = await _userManager.FindByNameAsync(emailOrUsername);
+                }
 
                 if (user != null)
                 {
                     // Create claims
                     var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, email),
+                new Claim(ClaimTypes.Name, emailOrUsername),
                 new Claim(ClaimTypes.Role, role),
                 new Claim("UserId", userId)
             };
@@ -392,6 +409,7 @@ namespace Food_Ordering_API.Controllers
             }
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
@@ -419,5 +437,13 @@ namespace Food_Ordering_API.Controllers
                 return View();
             }
         }
+
+        public class ErrorResponse
+        {
+            public string Message { get; set; }
+            public IEnumerable<string> Errors { get; set; }
+        }
+
+
     }
 }

@@ -70,12 +70,18 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            @if (TempData["ErrorMessage"] != null)
+            @if (!ViewData.ModelState.IsValid)
             {
                 <div class="alert alert-danger">
-                    @TempData["ErrorMessage"]
+                    <ul>
+                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li>@error.ErrorMessage</li>
+                        }
+                    </ul>
                 </div>
             }
+
 
             <div class="card">
                 <div class="card-header text-center">
@@ -180,5 +186,44 @@
             body.classList.add("owner-theme");
             body.classList.remove("customer-theme");
         });
+        document.getElementById("signupFormCustomer").addEventListener("submit", validatePassword);
+        document.getElementById("signupFormRestaurant").addEventListener("submit", validatePassword);
     });
+
+    function validatePassword(event) {
+        const password = document.getElementById("password").value;
+        let errors = [];
+
+        if (password.length < 6) {
+            errors.push("Passwords must be at least 6 characters.");
+        }
+        if (!/\d/.test(password)) {
+            errors.push("Passwords must have at least one digit ('0'-'9').");
+        }
+        if (!/[A-Z]/.test(password)) {
+            errors.push("Passwords must have at least one uppercase ('A'-'Z').");
+        }
+        if (!/\W/.test(password)) {
+            errors.push("Passwords must have at least one non alphanumeric character.");
+        }
+
+        if (errors.length > 0) {
+            event.preventDefault();
+            displayErrors(errors);
+        }
+    }
+
+    function displayErrors(errors) {
+        const errorDiv = document.createElement("div");
+        errorDiv.className = "alert alert-danger";
+        errorDiv.innerHTML = "<ul>";
+
+        errors.forEach(function (error) {
+            errorDiv.innerHTML += "<li>" + error + "</li>";
+        });
+
+        errorDiv.innerHTML += "</ul>";
+        const container = document.querySelector(".container");
+        container.prepend(errorDiv);
+    }
 </script>

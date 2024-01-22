@@ -44,14 +44,18 @@ namespace Food_Ordering_API.Controllers
             {
                 return BadRequest(new { Message = "User already exists" });
             }
-            if (await _accountService.AddUserAsync(model.Username, model.Password, roleName))
+            var (success, errors) = await _accountService.AddUserAsync(model.Username, model.Password, roleName);
+            if (success)
             {
                 // Generate JWT after user creation
                 var user = await _accountService.FindUserAsync(model.Username);
                 var token = await GenerateJwtToken(user);
                 return Ok(new { Message = "Successfully logged in", userId = user.Id, Token = token });
             }
-            return BadRequest("Failed to create user");
+            else
+            {
+                return BadRequest(new { Message = "Failed to create user", Errors = errors });
+            }
         }
 
         // Your API

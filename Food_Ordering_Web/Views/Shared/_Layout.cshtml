@@ -69,7 +69,12 @@
             </button>
 
             <div id="orderStatus"></div>
-            <!-- Replacing the brand name with buttons -->
+
+            <a class="navbar-brand mx-auto" href="#">
+                <img src="/Images/logo.jpeg" alt="Logo" style="height: 40px;"> <!-- Adjust the path and size as needed -->
+                <span class="ms-2">Restro</span>
+            </a>
+
             <!-- ... (above part remains unchanged) -->
             <div class="ms-auto d-flex align-items-center">
                 @if (SignInManager.IsSignedIn(User))
@@ -160,13 +165,7 @@
             </div>
 
         </div>
-          <!-- Centered Logo and Name -->
-        <div class="mx-auto">
-            <a class="navbar-brand" href="#">
-                <img src="/Images/logo.jpeg" alt="Logo" style="height: 40px;"> <!-- Adjust the path and size as needed -->
-                <span class="ms-2">Restro</span>
-            </a>
-        </div>
+       
     </nav>
 
     <div class="container">
