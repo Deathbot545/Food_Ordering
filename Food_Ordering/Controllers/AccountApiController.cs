@@ -44,19 +44,24 @@ namespace Food_Ordering_API.Controllers
             {
                 return BadRequest(new { Message = "User already exists" });
             }
-            var (success, errors) = await _accountService.AddUserAsync(model.Username, model.Password, roleName);
+
+            var (success, errors, user) = await _accountService.AddUserAsync(model.Username, model.Password, roleName);
             if (success)
             {
-                // Generate JWT after user creation
-                var user = await _accountService.FindUserAsync(model.Username);
                 var token = await GenerateJwtToken(user);
-                return Ok(new { Message = "Successfully logged in", userId = user.Id, Token = token });
+                return Ok(new
+                {
+                    Message = "Successfully logged in",
+                    user = new { user.Id, user.UserName, user.Email, user.NormalizedUserName /* other fields as required */ },
+                    Token = token
+                });
             }
             else
             {
                 return BadRequest(new { Message = "Failed to create user", Errors = errors });
             }
         }
+
 
         // Your API
         [HttpPost("Login")]
@@ -72,7 +77,7 @@ namespace Food_Ordering_API.Controllers
                     return Ok(new
                     {
                         message = "Successfully logged in",
-                        userId = user.Id,
+                        user = new { user.Id, user.UserName, user.Email, user.NormalizedUserName, /* other fields as required */ },
                         token = token
                     });
                 }
@@ -88,6 +93,7 @@ namespace Food_Ordering_API.Controllers
 
             return BadRequest(new { message = "An unknown error occurred" });
         }
+
         [HttpPost("GoogleLogin")]
         public async Task<IActionResult> GoogleLogin([FromBody] LoginDto model)
         {
@@ -104,7 +110,10 @@ namespace Food_Ordering_API.Controllers
             if (user != null)
             {
                 var token = await GenerateJwtToken(user);
-                return Ok(new { Message = "Successfully logged in", userId = user.Id, Token = token });
+                return Ok(new {
+                    Message = "Successfully logged in",
+                    user = user, // Include user details in the response
+                    Token = token });
             }
             else
             {

@@ -20,6 +20,7 @@ using Newtonsoft.Json;
 using System.Net;
 using Azure;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.VisualStudio.Services.Users;
 
 namespace Food_Ordering_API.Controllers
 {
@@ -74,27 +75,28 @@ namespace Food_Ordering_API.Controllers
         }
 
 
-        private async Task<IActionResult> AddUserToApi(string apiEndpoint, string username, string password, string actionName, string controllerName, string roleName) // added roleName parameter
+        private async Task<IActionResult> AddUserToApi(string apiEndpoint, string username, string password, string actionName, string controllerName, string roleName)
         {
-            var user = new { Username = username, Password = password };
+            var userDto = new { Username = username, Password = password };
             var response = await _httpClient.PostAsync($"{_apiBaseUrl}/{apiEndpoint}",
-                new StringContent(System.Text.Json.JsonSerializer.Serialize(user), Encoding.UTF8, "application/json"));
+                new StringContent(System.Text.Json.JsonSerializer.Serialize(userDto), Encoding.UTF8, "application/json"));
 
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
                 var responseObject = System.Text.Json.JsonSerializer.Deserialize<LoginResponse>(responseContent);
-
-                if (responseObject != null && responseObject.Token != null)
+                if (responseObject != null)
                 {
-                    HttpContext.Response.Cookies.Append("jwtCookie", responseObject.Token, new CookieOptions
+                    // Create a new ApplicationUser object
+                    ApplicationUser user = new ApplicationUser
                     {
-                        HttpOnly = true,
-                        Secure = true,
-                        SameSite = SameSiteMode.Strict
-                    });
+                        Id = responseObject.User.Id,
+                        UserName = responseObject.User.UserName,
+                        Email = responseObject.User.Email
+                        // Populate other necessary fields
+                    };
 
-                    return await HandleLogin(username, responseObject.Token, responseObject.UserId);
+                    return await HandleLogin(user, responseObject.Token);
                 }
                 else
                 {
@@ -117,8 +119,6 @@ namespace Food_Ordering_API.Controllers
                 return View("Signup"); // Assuming "Register" is the name of your view
             }
 
-
-
         }
 
         public IActionResult Login()
@@ -139,6 +139,7 @@ namespace Food_Ordering_API.Controllers
                 Password = model.Password
             };
 
+            // Using System.Text.Json for serialization
             var jsonPayload = System.Text.Json.JsonSerializer.Serialize(loginDto);
             var httpResponse = await _httpClient.PostAsync(
                 $"{_apiBaseUrl}/Login",
@@ -149,17 +150,19 @@ namespace Food_Ordering_API.Controllers
                 var responseContent = await httpResponse.Content.ReadAsStringAsync();
                 var responseObject = System.Text.Json.JsonSerializer.Deserialize<LoginResponse>(responseContent);
 
+                _logger.LogInformation($"Raw API Response: {responseContent}");
                 if (responseObject != null)
                 {
-                    HttpContext.Response.Cookies.Append("jwtCookie", responseObject.Token, new CookieOptions
+                    // Create a new ApplicationUser object
+                    ApplicationUser user = new ApplicationUser
                     {
-                        HttpOnly = true,
-                        Secure = true,
-                        SameSite = SameSiteMode.Strict
-                    });
+                        Id = responseObject.User.Id,
+                        UserName = responseObject.User.UserName,
+                        Email = responseObject.User.Email
+                        // Populate other necessary fields
+                    };
 
-                    // Pass model.UserName as the email to HandleLogin.
-                    return await HandleLogin(model.UserName, responseObject.Token, responseObject.UserId, outletId, tableId);
+                    return await HandleLogin(user, responseObject.Token, outletId, tableId);
                 }
                 else
                 {
@@ -185,19 +188,32 @@ namespace Food_Ordering_API.Controllers
             return View(model);
         }
 
-
-
         public class LoginResponse
         {
             [JsonPropertyName("message")]
             public string Message { get; set; }
 
-            [JsonPropertyName("userId")]
-            public string UserId { get; set; }
+            [JsonPropertyName("user")]
+            public UserResponse User { get; set; }
 
             [JsonPropertyName("token")]
             public string Token { get; set; }
         }
+
+        public class UserResponse
+        {
+            [JsonPropertyName("id")]
+            public string Id { get; set; }
+
+            [JsonPropertyName("userName")]
+            public string UserName { get; set; }
+
+            [JsonPropertyName("email")]
+            public string Email { get; set; }
+
+            // Add other properties as per API response
+        }
+
 
 
         [HttpGet]
@@ -259,18 +275,19 @@ namespace Food_Ordering_API.Controllers
                     var apiResponseContent = await apiResponse.Content.ReadAsStringAsync();
                     if (apiResponse.IsSuccessStatusCode)
                     {
-                        var apiResponseObject = System.Text.Json.JsonSerializer.Deserialize<LoginResponse>(apiResponseContent);  // Assume RegisterResponse has a Token field
-
-                        if (apiResponseObject != null)
+                        var responseObject = System.Text.Json.JsonSerializer.Deserialize<LoginResponse>(apiResponseContent);
+                        if (responseObject != null)
                         {
-                            HttpContext.Response.Cookies.Append("jwtCookie", apiResponseObject.Token, new CookieOptions
+                            // Create a new ApplicationUser object
+                            ApplicationUser user = new ApplicationUser
                             {
-                                HttpOnly = true,
-                                Secure = true,
-                                SameSite = SameSiteMode.Strict
-                            });
+                                Id = responseObject.User.Id,
+                                UserName = responseObject.User.UserName,
+                                Email = responseObject.User.Email
+                                // Populate other necessary fields
+                            };
 
-                            return await HandleLogin(email, apiResponseObject.Token, apiResponseObject.UserId);
+                            return await HandleLogin(user, responseObject.Token, outletId, tableId);
                         }
                         else
                         {
@@ -319,17 +336,18 @@ namespace Food_Ordering_API.Controllers
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
                     var responseObject = System.Text.Json.JsonSerializer.Deserialize<LoginResponse>(responseContent);
-
                     if (responseObject != null)
                     {
-                        HttpContext.Response.Cookies.Append("jwtCookie", responseObject.Token, new CookieOptions
+                        // Create a new ApplicationUser object
+                        ApplicationUser user = new ApplicationUser
                         {
-                            HttpOnly = true,
-                            Secure = true,
-                            SameSite = SameSiteMode.Strict
-                        });
+                            Id = responseObject.User.Id,
+                            UserName = responseObject.User.UserName,
+                            Email = responseObject.User.Email
+                            // Populate other necessary fields
+                        };
 
-                        return await HandleLogin(email, responseObject.Token, responseObject.UserId, outletId, tableId);
+                        return await HandleLogin(user, responseObject.Token, outletId, tableId);
                     }
                     else
                     {
@@ -348,7 +366,7 @@ namespace Food_Ordering_API.Controllers
             }
 
         }
-        public async Task<IActionResult> HandleLogin(string emailOrUsername, string token, string userId, int? outletId = null, int? tableId = null)
+        public async Task<IActionResult> HandleLogin(ApplicationUser user, string token, int? outletId = null, int? tableId = null)
         {
             // Decode JWT to get role
             var handler = new JwtSecurityTokenHandler();
@@ -356,59 +374,38 @@ namespace Food_Ordering_API.Controllers
 
             // Check for role claim safely
             var roleClaim = tokenS.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role);
-
-            if (roleClaim != null)
+            if (roleClaim == null)
             {
-                var role = roleClaim.Value;
+                _logger.LogError("Role claim not found in JWT.");
+                return BadRequest("Role claim not found in JWT.");
+            }
 
-                // Try to retrieve the ApplicationUser object by email
-                ApplicationUser user = null;
-                if (emailOrUsername.Contains("@"))
-                {
-                    user = await _userManager.FindByEmailAsync(emailOrUsername);
-                }
-                else
-                {
-                    user = await _userManager.FindByNameAsync(emailOrUsername);
-                }
+            var role = roleClaim.Value;
 
-                if (user != null)
-                {
-                    // Create claims
-                    var claims = new List<Claim>
+            // Create claims
+            var claims = new List<Claim>
+    {
+        new Claim(ClaimTypes.Name, user.UserName),
+        new Claim(ClaimTypes.Role, role),
+        new Claim("UserId", user.Id)
+    };
+
+            // Create ClaimsIdentity
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            // Use SignInManager to sign in the user
+            await _signInManager.SignInWithClaimsAsync(user, isPersistent: false, claimsIdentity.Claims);
+
+            // Redirect based on role
+            if (outletId.HasValue && tableId.HasValue)
             {
-                new Claim(ClaimTypes.Name, emailOrUsername),
-                new Claim(ClaimTypes.Role, role),
-                new Claim("UserId", userId)
-            };
-
-                    // Create ClaimsIdentity
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                    // Use SignInManager to sign in the user
-                    await _signInManager.SignInWithClaimsAsync(user, isPersistent: false, claimsIdentity.Claims);
-
-                    // Redirect based on role
-                    if (outletId.HasValue && tableId.HasValue)
-                    {
-                        return Redirect($"/Order/Menu?outletId={outletId}&tableId={tableId}");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", role); // Assuming you have an Index action for each role.
-                    }
-                }
-                else
-                {
-                    return BadRequest("User not found.");
-                }
+                return Redirect($"/Order/Menu?outletId={outletId}&tableId={tableId}");
             }
             else
             {
-                return BadRequest("Role claim not found in JWT.");
+                return RedirectToAction("Index", role); // Assuming you have an Index action for each role.
             }
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Logout()

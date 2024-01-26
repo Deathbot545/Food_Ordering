@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,17 @@ namespace Core.Services.AccountService
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ILogger<AccountService> _logger;
 
-        public AccountService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public AccountService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,ILogger<AccountService> logger)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _logger = logger;
 
         }
 
-        public async Task<(bool Success, IEnumerable<string> Errors)> AddUserAsync(string username, string password, string role)
+        public async Task<(bool Success, IEnumerable<string> Errors, ApplicationUser User)> AddUserAsync(string username, string password, string role)
         {
             if (!await _roleManager.RoleExistsAsync(role))
             {
@@ -29,31 +32,28 @@ namespace Core.Services.AccountService
             }
 
             var user = new ApplicationUser { UserName = username, Email = username };
-
-            IdentityResult result;
-
-            if (string.IsNullOrEmpty(password))
-            {
-                result = await _userManager.CreateAsync(user);
-            }
-            else
-            {
-                result = await _userManager.CreateAsync(user, password);
-            }
+            var result = string.IsNullOrEmpty(password)
+                         ? await _userManager.CreateAsync(user)
+                         : await _userManager.CreateAsync(user, password);
 
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, role);
-                return (true, null);
+                // No need to call LoginAsync, as user is just created and not yet logged in
+                return (true, null, user);
             }
 
-            return (false, result.Errors.Select(e => e.Description));
+            return (false, result.Errors.Select(e => e.Description), null);
         }
+
+
 
 
         public async Task<ApplicationUser> LoginAsync(string identifier, string password)
         {
-            var user = await _userManager.FindByEmailAsync(identifier) ?? await _userManager.FindByNameAsync(identifier);
+            ApplicationUser user = await _userManager.FindByEmailAsync(identifier)
+                                    ?? await _userManager.FindByNameAsync(identifier);
+
             if (user == null)
             {
                 throw new UserNotFoundException();
@@ -64,6 +64,7 @@ namespace Core.Services.AccountService
             {
                 throw new InvalidLoginException();
             }
+            _logger.LogInformation($"User found: {user.UserName}, validating password.");
             return user;
         }
 

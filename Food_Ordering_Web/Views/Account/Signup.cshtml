@@ -190,28 +190,7 @@
         document.getElementById("signupFormRestaurant").addEventListener("submit", validatePassword);
     });
 
-    function validatePassword(event) {
-        const password = document.getElementById("password").value;
-        let errors = [];
-
-        if (password.length < 6) {
-            errors.push("Passwords must be at least 6 characters.");
-        }
-        if (!/\d/.test(password)) {
-            errors.push("Passwords must have at least one digit ('0'-'9').");
-        }
-        if (!/[A-Z]/.test(password)) {
-            errors.push("Passwords must have at least one uppercase ('A'-'Z').");
-        }
-        if (!/\W/.test(password)) {
-            errors.push("Passwords must have at least one non alphanumeric character.");
-        }
-
-        if (errors.length > 0) {
-            event.preventDefault();
-            displayErrors(errors);
-        }
-    }
+   
 
     function displayErrors(errors) {
         const errorDiv = document.createElement("div");
