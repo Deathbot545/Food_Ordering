@@ -384,11 +384,11 @@ namespace Food_Ordering_API.Controllers
 
             // Create claims
             var claims = new List<Claim>
-    {
-        new Claim(ClaimTypes.Name, user.UserName),
-        new Claim(ClaimTypes.Role, role),
-        new Claim("UserId", user.Id)
-    };
+            {
+             new Claim(ClaimTypes.Name, user.UserName),
+             new Claim(ClaimTypes.Role, role),
+             new Claim("UserId", user.Id)
+            };
 
             // Create ClaimsIdentity
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
