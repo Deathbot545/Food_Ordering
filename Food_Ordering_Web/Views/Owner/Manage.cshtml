@@ -1,8 +1,10 @@
 ﻿<div class="container">
     <div class="row">
-        @ViewBag.OutletId
+      
         <!-- Category Form -->
         <div class="container">
+            <div id="alert-placeholder"></div>
+
             <div class="row">
                 <!-- Add Category Form -->
                 <div class="col-md-6">
@@ -179,6 +181,26 @@
 
         $(document).on('click', '.delete-category', function () {
             const categoryId = $(this).attr('data-id');
+            const categoryName = $(this).closest('tr').find('td:first').text(); // Get the name of the category
+
+            let categoryHasMenuItems = false;
+
+            // Check each menu item
+            $('#menu-item-table-body tr').each(function () {
+                const menuItemCategoryName = $(this).find('td:nth-child(3)').text(); // Assuming category name is in the third column
+                if (menuItemCategoryName === categoryName) {
+                    categoryHasMenuItems = true;
+                    return false; // Break the loop
+                }
+            });
+
+            if (categoryHasMenuItems) {
+                // Show Bootstrap alert instead of JavaScript alert
+                showBootstrapAlert('This category has menu items. Please delete them first before deleting the category.');
+                return;
+            }
+
+            // Proceed with deletion if no menu items are found
             $.ajax({
                 url: `https://localhost:7115/api/MenuApi/DeleteCategory/${categoryId}`,
                 method: 'DELETE',
@@ -191,6 +213,7 @@
                 }
             });
         });
+
         $('#food-form').submit(function (e) {
             e.preventDefault();
 
@@ -260,6 +283,16 @@
         reader.onerror = function (error) {
             console.log('Error: ', error);
         };
+    }
+
+    // Function to display a Bootstrap alert
+    function showBootstrapAlert(message) {
+        const alertHtml = `
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Attention!</strong> ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>`;
+        $('#alert-placeholder').html(alertHtml);
     }
 
 </script>

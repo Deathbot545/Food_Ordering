@@ -384,17 +384,26 @@ namespace Food_Ordering_API.Controllers
 
             // Create claims
             var claims = new List<Claim>
-            {
-             new Claim(ClaimTypes.Name, user.UserName),
-             new Claim(ClaimTypes.Role, role),
-             new Claim("UserId", user.Id)
-            };
+    {
+        new Claim(ClaimTypes.Name, user.UserName),
+        new Claim(ClaimTypes.Role, role),
+        new Claim("UserId", user.Id)
+    };
 
             // Create ClaimsIdentity
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
             // Use SignInManager to sign in the user
             await _signInManager.SignInWithClaimsAsync(user, isPersistent: false, claimsIdentity.Claims);
+
+            // Set the JWT token in a cookie
+            Response.Cookies.Append("jwtCookie", token, new CookieOptions
+            {
+                HttpOnly = true, // Recommended for security
+                Secure = true, // Send the cookie over HTTPS only
+                SameSite = SameSiteMode.Strict, // Recommended for security
+                Expires = DateTime.UtcNow.AddMinutes(30) // Set the same expiry as your JWT token
+            });
 
             // Redirect based on role
             if (outletId.HasValue && tableId.HasValue)
@@ -406,6 +415,7 @@ namespace Food_Ordering_API.Controllers
                 return RedirectToAction("Index", role); // Assuming you have an Index action for each role.
             }
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Logout()

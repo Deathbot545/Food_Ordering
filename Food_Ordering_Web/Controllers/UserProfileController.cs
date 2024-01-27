@@ -31,19 +31,18 @@ namespace Food_Ordering_Web.Controllers
             var response = await _httpClient.GetAsync("UserProfileApi/GetUserProfile"); // Removed the hardcoded URL
             if (response.IsSuccessStatusCode)
             {
-                    var content = await response.Content.ReadAsStringAsync();
+                var content = await response.Content.ReadAsStringAsync();
                 var userProfile = Newtonsoft.Json.JsonConvert.DeserializeObject<UserProfileModel>(content);
 
                 return View("~/Views/Home/Profile.cshtml", userProfile);
             }
             else
             {
-                    // Log the failure here
-                    return View("Error");
+                // Log the failure here
+                return View("Error");
             }
-            
-        }
 
+        }
 
         [HttpPost]
         public async Task<IActionResult> Update(UserProfileModel model)
@@ -63,6 +62,10 @@ namespace Food_Ordering_Web.Controllers
                 return View("Error"); // Add appropriate error handling
             }
         }
-    
+       
+        public async Task<IActionResult> EditProfile()
+        {
+            return View("~/Views/Account/UpdateProfile.cshtml");
+        }
     }
 }

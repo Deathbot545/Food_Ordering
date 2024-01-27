@@ -30,7 +30,8 @@ namespace Core.Services.User
             return new UserProfileModel
             {
                 UserName = user.UserName,
-                Email = user.Email
+                Email = user.Email,
+                PhoneNumber=user.PhoneNumber
                 // Map other fields as needed
             };
         }
