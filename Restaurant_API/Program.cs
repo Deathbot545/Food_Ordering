@@ -32,7 +32,11 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+<<<<<<< HEAD
 builder.Configuration.AddJsonFile("Restaurant_API_appsettings.json", optional: true, reloadOnChange: true);
+=======
+builder.Configuration.AddJsonFile("Restaurent_API_appsettings.json", optional: true, reloadOnChange: true);
+>>>>>>> c513c9b1fa518970f994ead4c50374b2b1b49d0c
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
