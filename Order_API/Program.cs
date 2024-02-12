@@ -46,6 +46,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+builder.Configuration.AddJsonFile("Order_API_appsettings.json", optional: true, reloadOnChange: true);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

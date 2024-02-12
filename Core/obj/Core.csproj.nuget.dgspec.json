@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\New folder\\Food_Ordering\\Food_Ordering\\Core\\Core.csproj": {}
+    "D:\\test\\Food_Ordering\\Core\\Core.csproj": {}
   },
   "projects": {
-    "D:\\New folder\\Food_Ordering\\Food_Ordering\\Core\\Core.csproj": {
+    "D:\\test\\Food_Ordering\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\New folder\\Food_Ordering\\Food_Ordering\\Core\\Core.csproj",
+        "projectUniqueName": "D:\\test\\Food_Ordering\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "D:\\New folder\\Food_Ordering\\Food_Ordering\\Core\\Core.csproj",
+        "projectPath": "D:\\test\\Food_Ordering\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "D:\\New folder\\Food_Ordering\\Food_Ordering\\Core\\obj\\",
+        "outputPath": "D:\\test\\Food_Ordering\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,8 +33,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\New folder\\Food_Ordering\\Food_Ordering\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "D:\\New folder\\Food_Ordering\\Food_Ordering\\Infrastructure\\Infrastructure.csproj"
+              "D:\\test\\Food_Ordering\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "D:\\test\\Food_Ordering\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -78,14 +78,14 @@
         }
       }
     },
-    "D:\\New folder\\Food_Ordering\\Food_Ordering\\Infrastructure\\Infrastructure.csproj": {
+    "D:\\test\\Food_Ordering\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\New folder\\Food_Ordering\\Food_Ordering\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "D:\\test\\Food_Ordering\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "D:\\New folder\\Food_Ordering\\Food_Ordering\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "D:\\test\\Food_Ordering\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "D:\\New folder\\Food_Ordering\\Food_Ordering\\Infrastructure\\obj\\",
+        "outputPath": "D:\\test\\Food_Ordering\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
