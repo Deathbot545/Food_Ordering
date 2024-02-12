@@ -376,3 +376,7 @@ D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\ref
 D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\Food_Ordering_Web.pdb
 D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\Food_Ordering_Web.genruntimeconfig.cache
 D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\obj\Debug\net7.0\ref\Food_Ordering_Web.dll
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Food_Ordering_API_appsettings.Development.json
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Food_Ordering_API_appsettings.json
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Order_API_appsettings.Development.json
+D:\New folder\Food_Ordering\Food_Ordering\Food_Ordering_Web\bin\Debug\net7.0\Order_API_appsettings.json
